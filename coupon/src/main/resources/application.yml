@@ -1,0 +1,36 @@
+server:
+  port: 7000
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: coupon
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: zhj@2010[]
+    url: jdbc:mysql://192.168.244.128:3306/cms
+
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:884
+
+    # 忽略的网卡，对于存在虚拟机的电脑，避免报错：o.s.cloud.commons.util.InetUtils: Cannot determine local hostname
+    inetutils:
+      ignored-interfaces: 'Hyper-V Virtual Ethernet Adapter,Hyper-V Virtual Ethernet Adapter #3,Hyper-V Virtual Ethernet Adapter #4,Hyper-V Virtual Ethernet Adapter #5,Hyper-V Virtual Ethernet Adapter #2,VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      table-prefix: cms_
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
