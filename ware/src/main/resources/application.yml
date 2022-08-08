@@ -8,7 +8,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: zhj@2010[]
-    url: jdbc:mysql://192.168.244.128:3306/wms
+    url: jdbc:mysql://192.168.226.128:3306/wms
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER

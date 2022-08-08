@@ -7,6 +7,7 @@ import lombok.Data;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -30,6 +31,9 @@ public class CategoryDTO implements Serializable {
 
 	@ApiModelProperty(value = "父分类id")
 	private Long parentCid;
+
+	@ApiModelProperty(value = "商品子分类")
+	private List<CategoryDTO> children;
 
 	@ApiModelProperty(value = "层级")
 	private Integer catLevel;
@@ -57,6 +61,4 @@ public class CategoryDTO implements Serializable {
 
 	@ApiModelProperty(value = "记录修改时间")
 	private Date updateDate;
-
-
 }

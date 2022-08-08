@@ -25,6 +25,8 @@ public class ProductAttrValueEntity implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
+
     /**
      * 商品id
      */
@@ -55,6 +57,11 @@ public class ProductAttrValueEntity implements Serializable {
      * 快速展示，是否展示在介绍上；[0: 否; 1： 是]
      */
 	private Integer quickShow;
+
+	/**
+	 * 记录创建者
+	 */
+	private String creator;
 
 	/**
 	 * 记录创建时间

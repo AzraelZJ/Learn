@@ -1,3 +1,6 @@
+server:
+  port: 88
+
 spring:
   application:
     name: gateway
@@ -20,5 +23,13 @@ spring:
           predicates:
             - Query=url,qq
 
-server:
-  port: 88
+        # 管理员登录页面路由规则
+        - id: admin_route
+          # lb：Load Balancing，负载均衡
+          uri: lb://admin
+          predicates:
+            # 规定：所有前端项目路径均携带 api 前缀，/api/**
+            - Path=/api/**
+          # 路径重写，解决验证码刷不出来
+          filters:
+            - RewritePath=/api/(?<segment>.*),/admin/$\{segment}

@@ -26,7 +26,7 @@ public class ${className}Entity extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 #foreach ($column in $columns)
-#if($column.columnName != 'id' && $column.columnName != 'creator' && $column.columnName != 'create_date' $column.columnName != 'update_date')
+#if($column.columnName != 'id' && $column.columnName != 'creator' && $column.columnName != 'create_date' && $column.columnName != 'update_date')
 
     /**
      * $column.comments

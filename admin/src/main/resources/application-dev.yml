@@ -3,17 +3,9 @@ spring:
     druid:
       # MySQL
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://192.168.244.128:3306/sms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+      url: jdbc:mysql://192.168.226.128:3306/sms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
       username: root
       password: zhj@2010[]
-
-  application:
-    name: admim
-
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
       #      #Oracle
       #      driver-class-name: oracle.jdbc.OracleDriver
       #      url: jdbc:oracle:thin:@192.168.10.10:1521:xe

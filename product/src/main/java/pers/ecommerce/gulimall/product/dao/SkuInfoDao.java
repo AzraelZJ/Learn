@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
  * sku信息
  *
  * @author AzraelZJ 929780652@qq.com
- * @since 1.0.0 2022-07-13
+ * @since 1.0.0 2022-08-08
  */
 @Mapper
 public interface SkuInfoDao extends BaseDao<SkuInfoEntity> {

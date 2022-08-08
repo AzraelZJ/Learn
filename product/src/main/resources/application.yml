@@ -1,17 +1,17 @@
 server:
-  port: 10000
+  port: 12323
   servlet:
     context-path: /
 
 spring:
   application:
-    name: member
+    name: product
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: zhj@2010[]
-    url: jdbc:mysql://192.168.244.128:3306/pms
+    url: jdbc:mysql://192.168.226.128:3306/pms
 
   mvc:
     pathmatch:

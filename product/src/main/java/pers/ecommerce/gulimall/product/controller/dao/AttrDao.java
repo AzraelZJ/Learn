@@ -1,0 +1,16 @@
+package pers.ecommerce.gulimall.product.controller.dao;
+
+import pers.ecommerce.gulimall.common.dao.BaseDao;
+import pers.ecommerce.gulimall.product.entity.AttrEntity;
+import org.apache.ibatis.annotations.Mapper;
+
+/**
+ * 商品属性
+ *
+ * @author AzraelZJ 929780652@qq.com
+ * @since 1.0.0 2022-07-13
+ */
+@Mapper
+public interface AttrDao extends BaseDao<AttrEntity> {
+	
+}

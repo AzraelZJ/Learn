@@ -2,7 +2,7 @@ package pers.ecommerce.gulimall.product.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import pers.ecommerce.gulimall.common.service.impl.CrudServiceImpl;
-import pers.ecommerce.gulimall.product.dao.SkuImagesDao;
+import pers.ecommerce.gulimall.product.controller.dao.SkuImagesDao;
 import pers.ecommerce.gulimall.product.dto.SkuImagesDTO;
 import pers.ecommerce.gulimall.product.entity.SkuImagesEntity;
 import pers.ecommerce.gulimall.product.service.SkuImagesService;

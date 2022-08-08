@@ -8,6 +8,7 @@
 
 package pers.ecommerce.gulimall.utils;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,6 +18,8 @@ import java.util.List;
  * @author Mark sunlightcs@gmail.com
  */
 public class PageUtils implements Serializable {
+
+	@Serial
 	private static final long serialVersionUID = 1L;
 	//总记录数
 	private int totalCount;

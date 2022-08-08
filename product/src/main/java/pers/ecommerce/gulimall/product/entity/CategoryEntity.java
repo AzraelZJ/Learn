@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 商品三级分类
@@ -41,12 +42,18 @@ public class CategoryEntity implements Serializable {
     private Long parentCid;
 
     /**
+     * 商品子分类，@TableField(exist = false) 表示这个属性在数据表中不存在，是自定义属性
+     */
+    @TableField(exist = false)
+    private List<CategoryEntity> children;
+
+    /**
      * 层级
      */
     private Integer catLevel;
 
     /**
-     * 是否显示[0-不显示，1显示]
+     * 是否显示 [0-不显示，1显示]
      */
     private Integer showStatus;
 
@@ -69,6 +76,11 @@ public class CategoryEntity implements Serializable {
      * 商品数量
      */
     private Integer productCount;
+
+    /**
+     * 记录创建者
+     */
+    private String creator;
 
 	/**
 	 * 记录创建时间

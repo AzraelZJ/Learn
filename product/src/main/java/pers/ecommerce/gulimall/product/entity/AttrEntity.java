@@ -72,6 +72,11 @@ public class AttrEntity implements Serializable {
 	private Integer showDesc;
 
 	/**
+	 * 记录创建者
+	 */
+	private String creator;
+
+	/**
 	 * 记录创建时间
 	 */
 	@TableField(fill = FieldFill.INSERT)

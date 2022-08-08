@@ -11,7 +11,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: zhj@2010[]
-    url: jdbc:mysql://192.168.244.128:3306/cms
+    url: jdbc:mysql://192.168.226.128:3306/cms
 
   mvc:
     pathmatch:
@@ -20,7 +20,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:884
+        server-addr: 127.0.0.1:8848
 
     # 忽略的网卡，对于存在虚拟机的电脑，避免报错：o.s.cloud.commons.util.InetUtils: Cannot determine local hostname
     inetutils:

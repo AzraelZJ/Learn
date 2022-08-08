@@ -61,6 +61,11 @@ public class BrandEntity implements Serializable {
     private Integer sort;
 
     /**
+     * 记录创建者
+     */
+    private String creator;
+
+    /**
      * 记录修改时间
      */
     @TableField(fill = FieldFill.UPDATE)

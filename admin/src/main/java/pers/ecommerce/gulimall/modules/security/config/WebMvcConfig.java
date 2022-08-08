@@ -1,8 +1,8 @@
 /**
  * Copyright (c) 2018 人人开源 All rights reserved.
- *
+ * <p>
  * https://www.renren.io
- *
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import pers.ecommerce.gulimall.common.utils.DateUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
@@ -21,24 +20,31 @@ import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import pers.ecommerce.gulimall.common.utils.DateUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.TimeZone;
 
+/**
+ * @author AzraelZJ
+ */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-            .allowedOriginPatterns("*")
-            .allowCredentials(true)
-            .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-            .maxAge(3600);
-    }
+    /*
+     * 由于 Gateway 网关中已配置相关信息，此处重复配置将导致 admin 登陆界面无法跳转
+     * @Override
+     * public void addCorsMappings(CorsRegistry registry) {
+     *     registry.addMapping("/**")
+     *         .allowedOriginPatterns("*")
+     *         .allowCredentials(true)
+     *         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+     *         .maxAge(3600);
+     * }
+     */
+
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
