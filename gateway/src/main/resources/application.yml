@@ -11,17 +11,26 @@ spring:
         server-addr: 127.0.0.1:8848
     gateway:
       routes:
-        - id: baidu_route
-          uri: https://www.baidu.com
-          # 断言规则
-          predicates:
-            # 如果有一个参数等于 url 且其值为 baidu，就去 uri 指定的地址
-            - Query=url,baidu
+#        # 测试路由
+#        - id: baidu_route
+#          uri: https://www.baidu.com
+#          # 断言规则
+#          predicates:
+#            # 如果有一个参数等于 url 且其值为 baidu，就去 uri 指定的地址
+#            - Query=url,baidu
+#
+#        - id: qq_route
+#          uri: https://www.qq.com
+#          predicates:
+#            - Query=url,qq
 
-        - id: qq_route
-          uri: https://www.qq.com
+        # 商品服务路由
+        - id: product_route
+          uri: lb://product
           predicates:
-            - Query=url,qq
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
 
         # 管理员登录页面路由规则
         - id: admin_route

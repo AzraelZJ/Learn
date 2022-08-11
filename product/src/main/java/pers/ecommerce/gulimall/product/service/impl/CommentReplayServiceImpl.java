@@ -2,7 +2,7 @@ package pers.ecommerce.gulimall.product.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import pers.ecommerce.gulimall.common.service.impl.CrudServiceImpl;
-import pers.ecommerce.gulimall.product.controller.dao.CommentReplayDao;
+import pers.ecommerce.gulimall.product.dao.CommentReplayDao;
 import pers.ecommerce.gulimall.product.dto.CommentReplayDTO;
 import pers.ecommerce.gulimall.product.entity.CommentReplayEntity;
 import pers.ecommerce.gulimall.product.service.CommentReplayService;

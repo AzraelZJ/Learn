@@ -1,6 +1,5 @@
 package pers.ecommerce.gulimall.product.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -9,7 +8,6 @@ import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -76,21 +74,4 @@ public class CategoryEntity implements Serializable {
      * 商品数量
      */
     private Integer productCount;
-
-    /**
-     * 记录创建者
-     */
-    private String creator;
-
-	/**
-	 * 记录创建时间
-	 */
-	@TableField(fill = FieldFill.INSERT)
-	private Date createDate;
-
-	/**
-	 * 记录修改时间
-	 */
-	@TableField(fill = FieldFill.UPDATE)
-	private Date updateDate;
 }

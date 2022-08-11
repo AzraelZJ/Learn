@@ -1,36 +1,31 @@
 package pers.ecommerce.gulimall.product.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import pers.ecommerce.gulimall.common.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * spu属性值
  *
  * @author AzraelZJ 929780652@qq.com
- * @since 1.0.0 2022-07-13
+ * @since 1.0.0 2022-08-11
  */
 @Data
 @EqualsAndHashCode(callSuper=false)
 @TableName("pms_product_attr_value")
-public class ProductAttrValueEntity implements Serializable {
+public class ProductAttrValueEntity extends BaseEntity {
 
 	@Serial
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
 
     /**
      * 商品id
      */
-	@TableId
 	private Long spuId;
 
     /**
@@ -57,21 +52,4 @@ public class ProductAttrValueEntity implements Serializable {
      * 快速展示，是否展示在介绍上；[0: 否; 1： 是]
      */
 	private Integer quickShow;
-
-	/**
-	 * 记录创建者
-	 */
-	private String creator;
-
-	/**
-	 * 记录创建时间
-	 */
-	@TableField(fill = FieldFill.INSERT)
-	private Date createDate;
-
-	/**
-	 * 记录修改时间
-	 */
-	@TableField(fill = FieldFill.UPDATE)
-	private Date updateDate;
 }

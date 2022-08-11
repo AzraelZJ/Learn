@@ -12,7 +12,7 @@ import java.util.Date;
  * sku销售属性&值
  *
  * @author AzraelZJ 929780652@qq.com
- * @since 1.0.0 2022-07-13
+ * @since 1.0.0 2022-08-11
  */
 @Data
 @EqualsAndHashCode(callSuper=false)
@@ -21,6 +21,7 @@ public class SkuSaleAttrValueEntity extends BaseEntity {
 
 	@Serial
 	private static final long serialVersionUID = 1L;
+
 
     /**
      * sku_id

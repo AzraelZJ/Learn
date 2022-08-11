@@ -1,17 +1,18 @@
 package pers.ecommerce.gulimall.product.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import pers.ecommerce.gulimall.common.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import pers.ecommerce.gulimall.common.entity.BaseEntity;
 
 import java.io.Serial;
+import java.util.Date;
 
 /**
  * sku图片
  *
  * @author AzraelZJ 929780652@qq.com
- * @since 1.0.0 2022-07-13
+ * @since 1.0.0 2022-08-11
  */
 @Data
 @EqualsAndHashCode(callSuper=false)

@@ -14,8 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  CRUD基础服务接口
- *
+ * CRUD基础服务接口
  * @author Mark sunlightcs@gmail.com
  */
 public interface CrudService<T, D> extends BaseService<T> {
@@ -31,5 +30,4 @@ public interface CrudService<T, D> extends BaseService<T> {
     void update(D dto);
 
     void delete(Long[] ids);
-
 }

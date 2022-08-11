@@ -69,12 +69,12 @@ public class CategoryController {
         return new Result<PageData<CategoryDTO>>().ok(page);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("{catId}")
     @ApiOperation("信息")
     @RequiresPermissions("product:category:info")
-    public Result<CategoryDTO> get(@PathVariable("id") Long id) {
+    public Result<CategoryDTO> get(@PathVariable("catId") Long catId) {
 
-        CategoryDTO data = categoryService.get(id);
+        CategoryDTO data = categoryService.get(catId);
 
         return new Result<CategoryDTO>().ok(data);
     }
@@ -107,16 +107,22 @@ public class CategoryController {
         return new Result();
     }
 
-    @DeleteMapping
+    /**
+     * 删除商品目录项，必须发送 DELETE 类型的请求，@RequestBody：获取请求体
+     * SpringMVC 会自动将请求体内的数据（JSON）转为相应的对象
+     * @param catIds 商品目录项 id 数组
+     * @return 响应结果
+     */
+    @DeleteMapping("/delete")
     @ApiOperation("删除")
     @LogOperation("删除")
     @RequiresPermissions("product:category:delete")
-    public Result delete(@RequestBody Long[] ids) {
+    public Result delete(@RequestBody Long[] catIds) {
 
         // 效验数据
-        AssertUtils.isArrayEmpty(ids, "id");
+        AssertUtils.isArrayEmpty(catIds, "catIds");
 
-        categoryService.delete(ids);
+        categoryService.delete(catIds);
 
         return new Result();
     }

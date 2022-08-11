@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pers.ecommerce.gulimall.common.service.impl.CrudServiceImpl;
-import pers.ecommerce.gulimall.product.controller.dao.CategoryDao;
+import pers.ecommerce.gulimall.product.dao.CategoryDao;
 import pers.ecommerce.gulimall.product.dto.CategoryDTO;
 import pers.ecommerce.gulimall.product.entity.CategoryEntity;
 import pers.ecommerce.gulimall.product.service.CategoryService;
@@ -32,7 +32,6 @@ public class CategoryServiceImpl extends CrudServiceImpl<CategoryDao, CategoryEn
 
         return wrapper;
     }
-
 
     @Override
     public List<CategoryDTO> listWithTree() {

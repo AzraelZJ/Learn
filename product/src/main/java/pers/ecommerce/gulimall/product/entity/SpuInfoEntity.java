@@ -13,7 +13,7 @@ import java.util.Date;
  * spu信息
  *
  * @author AzraelZJ 929780652@qq.com
- * @since 1.0.0 2022-07-13
+ * @since 1.0.0 2022-08-11
  */
 @Data
 @EqualsAndHashCode(callSuper=false)
@@ -22,6 +22,7 @@ public class SpuInfoEntity extends BaseEntity {
 
 	@Serial
 	private static final long serialVersionUID = 1L;
+
 
     /**
      * 商品名称

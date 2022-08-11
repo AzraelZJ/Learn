@@ -75,6 +75,20 @@ public abstract class CrudServiceImpl<M extends BaseMapper<T>, T, D> extends Bas
 
     @Override
     public void delete(Long[] ids) {
+        //TODO 检查当前删除的菜单是否被别的地方引用，若被引用则不删除
         baseDao.deleteBatchIds(Arrays.asList(ids));
+
+        /*
+         * MyBatis-Plus 逻辑删除：
+         *     1. 配置全局规则（可省略）：
+         *         mybatis-plus:
+         *           global-config:
+         *             db-config:
+         *               # 配置逻辑删除
+         *               logic-delete-value: 1 # 逻辑已删除值标识（默认为1）
+         *               logic-not-delete-value: 0 # 逻辑未删除值标识（默认为0）
+         *     2. 配置逻辑删除的组件 Bean（3.1.1 之后的版本可省略）；
+         *     3. 给相应实体类字段上添加 @TableLogic 注解
+         */
     }
 }
