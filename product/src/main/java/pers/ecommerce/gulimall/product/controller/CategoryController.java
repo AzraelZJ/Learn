@@ -19,6 +19,7 @@ import pers.ecommerce.gulimall.common.validator.group.AddGroup;
 import pers.ecommerce.gulimall.common.validator.group.DefaultGroup;
 import pers.ecommerce.gulimall.common.validator.group.UpdateGroup;
 import pers.ecommerce.gulimall.product.dto.CategoryDTO;
+import pers.ecommerce.gulimall.product.entity.CategoryEntity;
 import pers.ecommerce.gulimall.product.excel.CategoryExcel;
 import pers.ecommerce.gulimall.product.service.CategoryService;
 import springfox.documentation.annotations.ApiIgnore;
@@ -97,12 +98,26 @@ public class CategoryController {
     @ApiOperation("修改")
     @LogOperation("修改")
     @RequiresPermissions("product:category:update")
-    public Result update(@RequestBody CategoryDTO dto) {
+    public Result update(@RequestBody CategoryDTO categoryDTO) {
 
         // 效验数据
-        ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
+        ValidatorUtils.validateEntity(categoryDTO, UpdateGroup.class, DefaultGroup.class);
 
-        categoryService.update(dto);
+        categoryService.update(categoryDTO);
+
+        return new Result();
+    }
+
+    @PutMapping("/update/sort")
+    @ApiOperation("修改")
+    @LogOperation("修改")
+    @RequiresPermissions("product:category:update")
+    public Result update(@RequestBody CategoryEntity[] categoryEntityList) {
+
+        // 效验数据
+        ValidatorUtils.validateEntity(categoryEntityList, UpdateGroup.class, DefaultGroup.class);
+
+        categoryService.updateBatchById(List.of(categoryEntityList));
 
         return new Result();
     }
@@ -113,7 +128,7 @@ public class CategoryController {
      * @param catIds 商品目录项 id 数组
      * @return 响应结果
      */
-    @DeleteMapping("/delete")
+    @DeleteMapping
     @ApiOperation("删除")
     @LogOperation("删除")
     @RequiresPermissions("product:category:delete")
