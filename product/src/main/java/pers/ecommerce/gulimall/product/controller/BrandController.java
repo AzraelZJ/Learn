@@ -28,13 +28,12 @@ import java.util.Map;
 
 /**
  * 品牌
- *
  * @author AzraelZJ 929780652@qq.com
  * @since 1.0.0 2022-07-13
  */
 @RestController
 @RequestMapping("product/brand")
-@Api(tags = "品牌" )
+@Api(tags = "品牌")
 public class BrandController {
 
     @Autowired
@@ -43,10 +42,10 @@ public class BrandController {
     @GetMapping("page")
     @ApiOperation("分页")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType = "int" ),
-            @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query", required = true, dataType = "int" ),
-            @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType = "String" ),
-            @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType = "String" )
+            @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType = "String")
     })
     @RequiresPermissions("product:brand:page")
     public Result<PageData<BrandDTO>> page(@ApiIgnore @RequestParam Map<String, Object> params) {
@@ -61,7 +60,7 @@ public class BrandController {
     @RequiresPermissions("product:brand:info")
     public Result<BrandDTO> get(@PathVariable("id") Long id) {
 
-            BrandDTO data = brandService.get(id);
+        BrandDTO data = brandService.get(id);
 
         return new Result<BrandDTO>().ok(data);
     }
@@ -72,10 +71,10 @@ public class BrandController {
     @RequiresPermissions("product:brand:save")
     public Result save(@RequestBody BrandDTO dto) {
 
-        //效验数据
+        // 效验数据
         ValidatorUtils.validateEntity(dto, AddGroup.class, DefaultGroup.class);
 
-            brandService.save(dto);
+        brandService.save(dto);
 
         return new Result();
     }
@@ -86,10 +85,10 @@ public class BrandController {
     @RequiresPermissions("product:brand:update")
     public Result update(@RequestBody BrandDTO dto) {
 
-        //效验数据
+        // 效验数据
         ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
 
-            brandService.update(dto);
+        brandService.update(dto);
 
         return new Result();
     }
@@ -100,10 +99,10 @@ public class BrandController {
     @RequiresPermissions("product:brand:delete")
     public Result delete(@RequestBody Long[] ids) {
 
-        //效验数据
+        // 效验数据
         AssertUtils.isArrayEmpty(ids, "id");
 
-            brandService.delete(ids);
+        brandService.delete(ids);
 
         return new Result();
     }
