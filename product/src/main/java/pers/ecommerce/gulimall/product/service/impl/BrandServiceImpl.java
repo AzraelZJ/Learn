@@ -13,7 +13,6 @@ import java.util.Map;
 
 /**
  * 品牌
- *
  * @author AzraelZJ 929780652@qq.com
  * @since 1.0.0 2022-07-13
  */
@@ -21,8 +20,9 @@ import java.util.Map;
 public class BrandServiceImpl extends CrudServiceImpl<BrandDao, BrandEntity, BrandDTO> implements BrandService {
 
     @Override
-    public QueryWrapper<BrandEntity> getWrapper(Map<String, Object> params){
-        String brandId = params.get("brand_id").toString();
+    public QueryWrapper<BrandEntity> getWrapper(Map<String, Object> params) {
+
+        String brandId = (String) params.get("brandId");
 
         QueryWrapper<BrandEntity> wrapper = new QueryWrapper<>();
         wrapper.eq(StringUtils.isNotBlank(brandId), "brand_id", brandId);

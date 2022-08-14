@@ -41,7 +41,6 @@
         <junit.version>4.13.2</junit.version>
         <jedis.version>4.2.3</jedis.version>
         <druid.version>1.2.9</druid.version>
-        <mybatisplus.version>3.5.2</mybatisplus.version>
         <sqlserver.version>4.0</sqlserver.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
@@ -148,7 +147,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatisplus.version}</version>
+            <version>${mybatis-plus-boot-starter.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.baomidou</groupId>

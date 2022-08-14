@@ -1,8 +1,8 @@
 package pers.ecommerce.gulimall.product.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import pers.ecommerce.gulimall.common.dao.BaseDao;
 import pers.ecommerce.gulimall.product.entity.BrandEntity;
-import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 品牌

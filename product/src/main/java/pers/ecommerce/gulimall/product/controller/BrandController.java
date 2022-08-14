@@ -55,12 +55,12 @@ public class BrandController {
         return new Result<PageData<BrandDTO>>().ok(page);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("{brandId}")
     @ApiOperation("信息")
     @RequiresPermissions("product:brand:info")
-    public Result<BrandDTO> get(@PathVariable("id") Long id) {
+    public Result<BrandDTO> get(@PathVariable("brandId") Long brandId) {
 
-        BrandDTO data = brandService.get(id);
+        BrandDTO data = brandService.get(brandId);
 
         return new Result<BrandDTO>().ok(data);
     }
@@ -97,12 +97,12 @@ public class BrandController {
     @ApiOperation("删除")
     @LogOperation("删除")
     @RequiresPermissions("product:brand:delete")
-    public Result delete(@RequestBody Long[] ids) {
+    public Result delete(@RequestBody Long[] brandIds) {
 
         // 效验数据
-        AssertUtils.isArrayEmpty(ids, "id");
+        AssertUtils.isArrayEmpty(brandIds, "brandId");
 
-        brandService.delete(ids);
+        brandService.delete(brandIds);
 
         return new Result();
     }

@@ -32,7 +32,7 @@ public class BrandDTO implements Serializable {
 	private String logo;
 
 	@ApiModelProperty(value = "介绍")
-	private String descript;
+	private String description;
 
 	@ApiModelProperty(value = "显示状态：[0: 不显示; 1: 显示]")
 	private Integer showStatus;
