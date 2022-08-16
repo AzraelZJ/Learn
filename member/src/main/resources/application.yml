@@ -7,6 +7,10 @@ spring:
   application:
     name: member
 
+  devtools:
+    livereload:
+      port: 8001
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
@@ -21,6 +25,9 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+
+    inetutils:
+      ignored-interfaces: 'Hyper-V Virtual Ethernet Adapter,Hyper-V Virtual Ethernet Adapter #3,Hyper-V Virtual Ethernet Adapter #4,Hyper-V Virtual Ethernet Adapter #5,Hyper-V Virtual Ethernet Adapter #2,VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml

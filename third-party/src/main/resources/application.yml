@@ -1,0 +1,30 @@
+server:
+  port: 11000
+
+spring:
+  application:
+    name: third-party
+
+  devtools:
+    livereload:
+      port: 11001
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+    inetutils:
+      ignored-interfaces: 'Hyper-V Virtual Ethernet Adapter,Hyper-V Virtual Ethernet Adapter #3,Hyper-V Virtual Ethernet Adapter #4,Hyper-V Virtual Ethernet Adapter #5,Hyper-V Virtual Ethernet Adapter #2,VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+
+    alicloud:
+      access-key: LTAI5tQgaEUUZE5XsjiyzUwM
+      secret-key: Sop1w1vpb4YO2gwmYj3YoOZ6nqKLHF
+      oss:
+        endpoint: oss-cn-beijing.aliyuncs.com
+        # 自定义属性（bucketName）
+        bucket-name: gulimall-azraelzj
+
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
