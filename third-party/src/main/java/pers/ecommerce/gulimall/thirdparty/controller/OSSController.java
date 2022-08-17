@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pers.ecommerce.gulimall.common.utils.Result;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,7 +37,7 @@ public class OSSController {
     private String accessKeyId;
 
     @RequestMapping("/oss/policy")
-    public Result policy() {
+    public Map<String, String> policy() {
 
         // 填写Host地址，格式为https://bucketname.endpoint。
         String host = "https://" + bucketName + "." + endpoint;
@@ -65,7 +64,7 @@ public class OSSController {
             String postSignature = ossClient.calculatePostSignature(postPolicy);
 
             respMap = new LinkedHashMap<>();
-            respMap.put("accessKeyId", accessKeyId);
+            respMap.put("OSSAccessKeyId", accessKeyId);
             respMap.put("policy", encodedPolicy);
             respMap.put("signature", postSignature);
             respMap.put("preDir", preDir);
@@ -77,6 +76,6 @@ public class OSSController {
             System.out.println(e.getMessage());
         }
 
-        return new Result().ok(respMap);
+        return respMap;
     }
 }
