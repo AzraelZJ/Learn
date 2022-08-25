@@ -1,5 +1,13 @@
 package pers.ecommerce.gulimall.product.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import pers.ecommerce.gulimall.common.annotation.LogOperation;
 import pers.ecommerce.gulimall.common.constant.Constant;
 import pers.ecommerce.gulimall.common.page.PageData;
@@ -13,13 +21,6 @@ import pers.ecommerce.gulimall.common.validator.group.UpdateGroup;
 import pers.ecommerce.gulimall.product.dto.BrandDTO;
 import pers.ecommerce.gulimall.product.excel.BrandExcel;
 import pers.ecommerce.gulimall.product.service.BrandService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
@@ -28,9 +29,11 @@ import java.util.Map;
 
 /**
  * 品牌
+ *
  * @author AzraelZJ 929780652@qq.com
  * @since 1.0.0 2022-07-13
  */
+@SuppressWarnings("AlibabaRemoveCommentedCode")
 @RestController
 @RequestMapping("product/brand")
 @Api(tags = "品牌")
@@ -65,15 +68,42 @@ public class BrandController {
         return new Result<BrandDTO>().ok(data);
     }
 
+    /**
+     * <p>新增品牌</p>
+     * <p>@Valid：对所标注字段开启校验</p>
+     * <p>@Validated：Spring 框架提供的校验注解，可以指定校验分组</p>
+     * <p>BindingResult：在 @Valid 注解后紧跟 BindingResult 可以获取校验结果</p>
+     *
+     * @param dto 品牌信息
+     * @return 结果
+     */
     @PostMapping
     @ApiOperation("保存")
     @LogOperation("保存")
     @RequiresPermissions("product:brand:save")
-    public Result save(@RequestBody BrandDTO dto) {
+    public Result save(@Validated(AddGroup.class) /*@Valid*/ @RequestBody BrandDTO dto /*, BindingResult result*/) {
 
         // 效验数据
         ValidatorUtils.validateEntity(dto, AddGroup.class, DefaultGroup.class);
 
+        /*
+         * if (result.hasErrors()) {
+         * // 获取校验的错误结果
+         * Map<String, String> errorMap = new HashMap<>();
+
+         * result.getFieldErrors().forEach(resultItem -> {
+         *     // 获取错误提示
+         *     String errorMessage = resultItem.getDefaultMessage();
+         *     // 获取错误的属性名
+         *     String errorField = resultItem.getField();
+         *     errorMap.put(errorField, errorMessage);
+         * });
+
+         * return new Result<Map<String, String>>().error(400, "提交的数据不合法", errorMap);
+         * } else {
+         *     brandService.save(dto);
+         * }
+         */
         brandService.save(dto);
 
         return new Result();
@@ -83,7 +113,7 @@ public class BrandController {
     @ApiOperation("修改")
     @LogOperation("修改")
     @RequiresPermissions("product:brand:update")
-    public Result update(@RequestBody BrandDTO dto) {
+    public Result update(@Validated(UpdateGroup.class) @RequestBody BrandDTO dto) {
 
         // 效验数据
         ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
