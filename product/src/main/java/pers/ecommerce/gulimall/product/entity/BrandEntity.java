@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.validator.constraints.URL;
 import pers.ecommerce.gulimall.common.validator.group.AddGroup;
 import pers.ecommerce.gulimall.common.validator.group.UpdateGroup;
 
@@ -38,17 +37,12 @@ public class BrandEntity implements Serializable {
     @TableId
     private Long brandId;
 
-    /**
-     * <p>品牌名</p>
-     * <P>&#064;NotBlank：校验注解，该字段必须非空且包含一个以上非空白字符</p>
-     * <p>message：自定义错误信息</p>
-     */
-    @NotBlank(message = "必须填写品牌名称且不能为空", groups = {AddGroup.class, UpdateGroup.class})
+
     private String name;
 
-
-    @NotEmpty
-    @URL(message = "Logo 必须是一个合法的 URL 地址")
+    /**
+     * 品牌图标的 URL 地址
+     */
     private String logo;
 
     /**
@@ -71,7 +65,6 @@ public class BrandEntity implements Serializable {
      * 排序序号
      */
     @NotNull
-    @Min(value = 0, message = "排序序号必须大于等于0")
     private Integer sort;
 
     /**

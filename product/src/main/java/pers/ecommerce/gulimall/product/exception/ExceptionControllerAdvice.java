@@ -48,6 +48,8 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(Throwable.class)
     public Result exceptionHandle(Throwable throwable) {
 
+        log.error("错误", throwable);
+
         return new Result().error(ErrorCodeEnum.UNKNOWN_EXCEPTION.getCode(),
                 ErrorCodeEnum.VALID_EXCEPTION.getMessage());
     }

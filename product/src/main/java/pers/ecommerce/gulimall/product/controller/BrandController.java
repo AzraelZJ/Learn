@@ -18,6 +18,7 @@ import pers.ecommerce.gulimall.common.validator.ValidatorUtils;
 import pers.ecommerce.gulimall.common.validator.group.AddGroup;
 import pers.ecommerce.gulimall.common.validator.group.DefaultGroup;
 import pers.ecommerce.gulimall.common.validator.group.UpdateGroup;
+import pers.ecommerce.gulimall.common.validator.group.UpdateStatusGroup;
 import pers.ecommerce.gulimall.product.dto.BrandDTO;
 import pers.ecommerce.gulimall.product.excel.BrandExcel;
 import pers.ecommerce.gulimall.product.service.BrandService;
@@ -81,7 +82,8 @@ public class BrandController {
     @ApiOperation("保存")
     @LogOperation("保存")
     @RequiresPermissions("product:brand:save")
-    public Result save(@Validated(AddGroup.class) /*@Valid*/ @RequestBody BrandDTO dto /*, BindingResult result*/) {
+    public Result<BrandDTO> save(@Validated(AddGroup.class)
+                                 /*@Valid*/ @RequestBody BrandDTO dto /*, BindingResult result*/) {
 
         // 效验数据
         ValidatorUtils.validateEntity(dto, AddGroup.class, DefaultGroup.class);
@@ -106,21 +108,40 @@ public class BrandController {
          */
         brandService.save(dto);
 
-        return new Result();
+        return new Result<>();
     }
 
     @PutMapping
     @ApiOperation("修改")
     @LogOperation("修改")
     @RequiresPermissions("product:brand:update")
-    public Result update(@Validated(UpdateGroup.class) @RequestBody BrandDTO dto) {
+    public Result<BrandDTO> update(@Validated(UpdateGroup.class) @RequestBody BrandDTO dto) {
 
         // 效验数据
         ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
 
         brandService.update(dto);
 
-        return new Result();
+        return new Result<>();
+    }
+
+    /**
+     * 修改品牌显示状态
+     * @param dto 品牌信息
+     * @return 结果
+     */
+    @PutMapping("/update/status")
+    @ApiOperation("修改")
+    @LogOperation("修改")
+    @RequiresPermissions("product:brand:update")
+    public Result<BrandDTO> updateBrandStatus(@Validated(UpdateStatusGroup.class) @RequestBody BrandDTO dto) {
+
+        // 效验数据
+        // ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
+
+        brandService.update(dto);
+
+        return new Result<>();
     }
 
     @DeleteMapping

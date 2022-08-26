@@ -10,6 +10,7 @@ package pers.ecommerce.gulimall.common.utils;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import pers.ecommerce.gulimall.common.exception.ErrorCode;
 
 import java.io.Serial;
@@ -21,6 +22,7 @@ import java.io.Serializable;
  * @author Mark sunlightcs@gmail.com
  * @since 1.0.0
  */
+@Data
 @ApiModel(value = "响应")
 public class Result<T> implements Serializable {
 
@@ -91,35 +93,5 @@ public class Result<T> implements Serializable {
         this.data = data;
 
         return this;
-    }
-
-    public int getCode() {
-
-        return code;
-    }
-
-    public void setCode(int code) {
-
-        this.code = code;
-    }
-
-    public String getMsg() {
-
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-
-        this.msg = msg;
-    }
-
-    public T getData() {
-
-        return data;
-    }
-
-    public void setData(T data) {
-
-        this.data = data;
     }
 }
