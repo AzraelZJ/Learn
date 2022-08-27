@@ -148,14 +148,14 @@ public class BrandController {
     @ApiOperation("删除")
     @LogOperation("删除")
     @RequiresPermissions("product:brand:delete")
-    public Result delete(@RequestBody Long[] brandIds) {
+    public Result<Long[]> delete(@RequestBody Long[] brandIds) {
 
         // 效验数据
         AssertUtils.isArrayEmpty(brandIds, "brandId");
 
         brandService.delete(brandIds);
 
-        return new Result();
+        return new Result<>();
     }
 
     @GetMapping("export")

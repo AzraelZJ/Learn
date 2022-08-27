@@ -11,7 +11,6 @@ import pers.ecommerce.gulimall.common.annotation.LogOperation;
 import pers.ecommerce.gulimall.common.constant.Constant;
 import pers.ecommerce.gulimall.common.page.PageData;
 import pers.ecommerce.gulimall.common.utils.ExcelUtils;
-import pers.ecommerce.gulimall.common.utils.R;
 import pers.ecommerce.gulimall.common.utils.Result;
 import pers.ecommerce.gulimall.common.validator.AssertUtils;
 import pers.ecommerce.gulimall.common.validator.ValidatorUtils;
@@ -30,6 +29,7 @@ import java.util.Map;
 
 /**
  * 商品三级分类
+ *
  * @author AzraelZJ 929780652@qq.com
  * @since 1.0.0 2022-07-13
  */
@@ -43,15 +43,16 @@ public class CategoryController {
 
     /**
      * 查出所有分类以及子分类，以树形结构组装起来
+     *
      * @return 结果
      */
-    @RequestMapping("list/tree")
-    // @RequiresPermissions("product:category:list")
-    public R list() {
+    @RequestMapping("list")
+    @RequiresPermissions("product:category:list")
+    public Result<List<CategoryDTO>> list() {
 
         List<CategoryDTO> categoryDTOList = categoryService.listWithTree();
 
-        return R.ok().put("data", categoryDTOList);
+        return new Result<List<CategoryDTO>>().ok(categoryDTOList);
     }
 
     @GetMapping("page")
@@ -84,47 +85,48 @@ public class CategoryController {
     @ApiOperation("保存")
     @LogOperation("保存")
     @RequiresPermissions("product:category:save")
-    public Result save(@RequestBody CategoryDTO dto) {
+    public Result<CategoryDTO> save(@RequestBody CategoryDTO dto) {
 
         // 效验数据
         ValidatorUtils.validateEntity(dto, AddGroup.class, DefaultGroup.class);
 
         categoryService.save(dto);
 
-        return new Result();
+        return new Result<>();
     }
 
     @PutMapping
     @ApiOperation("修改")
     @LogOperation("修改")
     @RequiresPermissions("product:category:update")
-    public Result update(@RequestBody CategoryDTO categoryDTO) {
+    public Result<CategoryDTO> update(@RequestBody CategoryDTO categoryDTO) {
 
         // 效验数据
         ValidatorUtils.validateEntity(categoryDTO, UpdateGroup.class, DefaultGroup.class);
 
         categoryService.update(categoryDTO);
 
-        return new Result();
+        return new Result<>();
     }
 
     @PutMapping("/update/sort")
     @ApiOperation("修改")
     @LogOperation("修改")
     @RequiresPermissions("product:category:update")
-    public Result update(@RequestBody CategoryEntity[] categoryEntityList) {
+    public Result<CategoryDTO> update(@RequestBody CategoryEntity[] categoryEntityList) {
 
         // 效验数据
         ValidatorUtils.validateEntity(categoryEntityList, UpdateGroup.class, DefaultGroup.class);
 
         categoryService.updateBatchById(List.of(categoryEntityList));
 
-        return new Result();
+        return new Result<>();
     }
 
     /**
      * 删除商品目录项，必须发送 DELETE 类型的请求，@RequestBody：获取请求体
      * SpringMVC 会自动将请求体内的数据（JSON）转为相应的对象
+     *
      * @param catIds 商品目录项 id 数组
      * @return 响应结果
      */
@@ -132,14 +134,14 @@ public class CategoryController {
     @ApiOperation("删除")
     @LogOperation("删除")
     @RequiresPermissions("product:category:delete")
-    public Result delete(@RequestBody Long[] catIds) {
+    public Result<Long[]> delete(@RequestBody Long[] catIds) {
 
         // 效验数据
         AssertUtils.isArrayEmpty(catIds, "catIds");
 
         categoryService.delete(catIds);
 
-        return new Result();
+        return new Result<>();
     }
 
     @GetMapping("export")
