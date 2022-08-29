@@ -19,4 +19,12 @@ public interface CategoryService extends CrudService<CategoryEntity, CategoryDTO
      * @return 菜单项
      */
     List<CategoryDTO> listWithTree();
+
+    /**
+     * 获取商品三级分类信息的完整列表
+     *
+     * @param catId 商品三级分类id
+     * @return 商品三级分类列表
+     */
+    Long[] getCatIdList(Long catId);
 }

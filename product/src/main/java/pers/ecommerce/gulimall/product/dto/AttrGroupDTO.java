@@ -1,5 +1,6 @@
 package pers.ecommerce.gulimall.product.dto;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -19,35 +20,37 @@ import java.util.Date;
 @ApiModel(value = "属性分组")
 public class AttrGroupDTO implements Serializable {
 
-	@Serial
+    @Serial
     private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "分组id")
-	private Long attrGroupId;
+    @ApiModelProperty(value = "分组id")
+    private Long attrGroupId;
 
-	@ApiModelProperty(value = "组名")
-	private String attrGroupName;
+    @ApiModelProperty(value = "组名")
+    private String attrGroupName;
 
-	@ApiModelProperty(value = "排序")
-	private Integer sort;
+    @ApiModelProperty(value = "排序")
+    private Integer sort;
 
-	@ApiModelProperty(value = "描述")
-	private String descript;
+    @ApiModelProperty(value = "描述")
+    private String description;
 
-	@ApiModelProperty(value = "组图标")
-	private String icon;
+    @ApiModelProperty(value = "组图标")
+    private String icon;
 
-	@ApiModelProperty(value = "所属分类id")
-	private Long catelogId;
+    @ApiModelProperty(value = "所属分类id")
+    private Long catId;
 
-	@ApiModelProperty(value = "记录创建者")
-	private Long creator;
+    @TableField(exist = false)
+    @ApiModelProperty(value = "所属分类id完整列表")
+    private Long[] catIdList;
 
-	@ApiModelProperty(value = "记录创建时间")
-	private Date createDate;
+    @ApiModelProperty(value = "记录创建者")
+    private Long creator;
 
-	@ApiModelProperty(value = "记录修改时间")
-	private Date updateDate;
+    @ApiModelProperty(value = "记录创建时间")
+    private Date createDate;
 
-
+    @ApiModelProperty(value = "记录修改时间")
+    private Date updateDate;
 }

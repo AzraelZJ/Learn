@@ -112,7 +112,7 @@ public class CategoryController {
     @PutMapping("/update/sort")
     @ApiOperation("修改")
     @LogOperation("修改")
-    @RequiresPermissions("product:category:update")
+    @RequiresPermissions("product:category:updte")
     public Result<CategoryDTO> update(@RequestBody CategoryEntity[] categoryEntityList) {
 
         // 效验数据

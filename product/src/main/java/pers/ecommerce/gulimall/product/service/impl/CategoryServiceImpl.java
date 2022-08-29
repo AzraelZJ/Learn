@@ -9,13 +9,11 @@ import pers.ecommerce.gulimall.product.dto.CategoryDTO;
 import pers.ecommerce.gulimall.product.entity.CategoryEntity;
 import pers.ecommerce.gulimall.product.service.CategoryService;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 商品三级分类
+ *
  * @author AzraelZJ 929780652@qq.com
  * @since 1.0.0 2022-07-13
  */
@@ -43,7 +41,7 @@ public class CategoryServiceImpl extends CrudServiceImpl<CategoryDao, CategoryEn
         // 2. 通过 cat_id 查出所有分类
         List<CategoryDTO> categoryDTOList = list(map);
 
-         // 3. 组装成父子树形结构，先查出所有一级分类，再查找所有子分类
+        // 3. 组装成父子树形结构，先查出所有一级分类，再查找所有子分类
         return categoryDTOList.stream()
                 .filter((categoryDTO) -> categoryDTO.getParentCid() == 0)
                 .peek((menu) -> menu.setChildren(getChildren(menu, categoryDTOList)))
@@ -52,7 +50,36 @@ public class CategoryServiceImpl extends CrudServiceImpl<CategoryDao, CategoryEn
     }
 
     /**
+     * 获取商品三级分类的完整列表
+     *
+     * @param catId 商品三级分类id
+     * @return 商品三级分类列表
+     */
+    @Override
+    public Long[] getCatIdList(Long catId) {
+
+        // 创建商品三级分类列表并加入初始id
+        List<Long> catIdList = new ArrayList<>();
+        catIdList.add(catId);
+
+        // 获取当前 id 所对应的商品三级目录的详细信息
+        CategoryDTO categoryDTO = this.get(catId);
+
+        // 如果商品三级目录存在父目录就添加其父目录的 id
+        while (categoryDTO.getParentCid() != 0) {
+            catIdList.add(categoryDTO.getParentCid());
+            categoryDTO = this.get(categoryDTO.getParentCid());
+        }
+
+        // 翻转后即为正确的顺序
+        Collections.reverse(catIdList);
+
+        return catIdList.toArray(new Long[0]);
+    }
+
+    /**
      * 递归查找所有菜单的子菜单
+     *
      * @param currentMenu 当前菜单
      * @param children    当前菜单的子菜单
      * @return 子菜单

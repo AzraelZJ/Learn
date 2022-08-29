@@ -1,5 +1,7 @@
 package pers.ecommerce.gulimall.product.dto;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -32,13 +34,15 @@ public class CategoryDTO implements Serializable {
 	@ApiModelProperty(value = "父分类id")
 	private Long parentCid;
 
+	@TableField(exist = false)
+	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	@ApiModelProperty(value = "商品子分类")
 	private List<CategoryDTO> children;
 
 	@ApiModelProperty(value = "层级")
 	private Integer catLevel;
 
-	@ApiModelProperty(value = "是否显示[0-不显示，1显示]")
+	@ApiModelProperty(value = "是否显示：[0-不显示，1显示]")
 	private Integer showStatus;
 
 	@ApiModelProperty(value = "排序")

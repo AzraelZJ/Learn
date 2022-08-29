@@ -6,10 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import pers.ecommerce.gulimall.common.validator.group.AddGroup;
-import pers.ecommerce.gulimall.common.validator.group.UpdateGroup;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
@@ -32,8 +30,6 @@ public class BrandEntity implements Serializable {
      * <p>品牌id</p>
      * <p>groups：分组校验</p>
      */
-    @Null(message = "新增品牌不能指定品牌id，其为自增字段", groups = AddGroup.class)
-    @NotNull(message = "修改品牌信息必须指定 品牌id", groups = UpdateGroup.class)
     @TableId
     private Long brandId;
 
@@ -58,7 +54,6 @@ public class BrandEntity implements Serializable {
     /**
      * 检索首字母
      */
-    @Pattern(regexp = "/[a-zA-Z]$/", message = "检索首字母必须是单个字母")
     private String firstLetter;
 
     /**

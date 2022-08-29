@@ -1,11 +1,15 @@
 package pers.ecommerce.gulimall.product.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import pers.ecommerce.gulimall.common.entity.BaseEntity;
 
 import java.io.Serial;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 属性分组
@@ -14,41 +18,65 @@ import java.io.Serial;
  * @since 1.0.0 2022-08-11
  */
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @TableName("pms_attr_group")
-public class AttrGroupEntity extends BaseEntity {
+public class AttrGroupEntity implements Serializable {
 
-	@Serial
-	private static final long serialVersionUID = 1L;
-
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     /**
      * 分组id
      */
-	private Long attrGroupId;
+    @TableId
+    private Long attrGroupId;
 
     /**
      * 组名
      */
-	private String attrGroupName;
+    private String attrGroupName;
 
     /**
      * 排序
      */
-	private Integer sort;
+    private Integer sort;
 
     /**
      * 描述
      */
-	private String descript;
+    private String description;
 
     /**
      * 组图标
      */
-	private String icon;
+    private String icon;
 
     /**
      * 所属分类id
      */
-	private Long catelogId;
+    private Long catId;
+
+    /**
+     * 所属分类id完整列表
+     */
+    @TableField(exist = false)
+    private Long[] catIdList;
+
+    /**
+     * 记录创建者
+     */
+    @TableField(fill = FieldFill.INSERT)
+    private Long creator;
+
+    /**
+     * 记录创建时间
+     */
+    @TableField(fill = FieldFill.INSERT)
+    private Date createDate;
+
+    /**
+     * 记录修改时间
+     */
+    @TableField(fill = FieldFill.UPDATE)
+    private Date updateDate;
 }
