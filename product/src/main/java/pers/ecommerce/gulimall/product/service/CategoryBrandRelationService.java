@@ -12,4 +12,9 @@ import pers.ecommerce.gulimall.product.entity.CategoryBrandRelationEntity;
  */
 public interface CategoryBrandRelationService extends CrudService<CategoryBrandRelationEntity, CategoryBrandRelationDTO> {
 
+    /**
+     * 保存品牌 id 与商品三级分类分类 id
+     * @param categoryBrandRelationDTO dto
+     */
+    void saveDetail(CategoryBrandRelationDTO categoryBrandRelationDTO);
 }

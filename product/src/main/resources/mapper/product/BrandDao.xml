@@ -17,5 +17,4 @@
         <result property="updateDate" column="update_date"/>
     </resultMap>
 
-
 </mapper>

@@ -50,6 +50,7 @@ public class CategoryController {
     @RequiresPermissions("product:category:list")
     public Result<List<CategoryDTO>> list() {
 
+        // TODO 将list请求整合到page内，并添加分页实现
         List<CategoryDTO> categoryDTOList = categoryService.listWithTree();
 
         return new Result<List<CategoryDTO>>().ok(categoryDTOList);

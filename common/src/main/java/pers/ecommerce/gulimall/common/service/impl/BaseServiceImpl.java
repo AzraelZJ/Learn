@@ -1,8 +1,8 @@
 /**
  * Copyright (c) 2018 人人开源 All rights reserved.
- *
+ * <p>
  * https://www.renren.io
- *
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -40,79 +40,86 @@ import java.util.function.BiConsumer;
  *
  * @author Mark sunlightcs@gmail.com
  */
-public abstract class BaseServiceImpl<M extends BaseMapper<T>, T>  implements BaseService<T> {
+public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<T> {
+
     @Autowired
     protected M baseDao;
+
     protected Log log = LogFactory.getLog(getClass());
 
     /**
      * 获取分页对象
-     * @param params      分页查询参数
-     * @param defaultOrderField  默认排序字段
-     * @param isAsc              排序方式
+     *
+     * @param params            分页查询参数
+     * @param defaultOrderField 默认排序字段
+     * @param isAsc             排序方式
      */
     protected IPage<T> getPage(Map<String, Object> params, String defaultOrderField, boolean isAsc) {
-        //分页参数
+
+        // 分页参数
         long curPage = 1;
         long limit = 10;
 
-        if(params.get(Constant.PAGE) != null){
-            curPage = Long.parseLong((String)params.get(Constant.PAGE));
+        if (params.get(Constant.PAGE) != null) {
+            curPage = Long.parseLong((String) params.get(Constant.PAGE));
         }
-        if(params.get(Constant.LIMIT) != null){
-            limit = Long.parseLong((String)params.get(Constant.LIMIT));
+        if (params.get(Constant.LIMIT) != null) {
+            limit = Long.parseLong((String) params.get(Constant.LIMIT));
         }
 
-        //分页对象
+        // 分页对象
         Page<T> page = new Page<>(curPage, limit);
 
-        //分页参数
+        // 分页参数
         params.put(Constant.PAGE, page);
 
-        //排序字段
-        String orderField = (String)params.get(Constant.ORDER_FIELD);
-        String order = (String)params.get(Constant.ORDER);
+        // 排序字段
+        String orderField = (String) params.get(Constant.ORDER_FIELD);
+        String order = (String) params.get(Constant.ORDER);
 
-        //前端字段排序
-        if(StringUtils.isNotBlank(orderField) && StringUtils.isNotBlank(order)){
-            if(Constant.ASC.equalsIgnoreCase(order)) {
+        // 前端字段排序
+        if (StringUtils.isNotBlank(orderField) && StringUtils.isNotBlank(order)) {
+            if (Constant.ASC.equalsIgnoreCase(order)) {
                 return page.addOrder(OrderItem.asc(orderField));
-            }else {
+            } else {
                 return page.addOrder(OrderItem.desc(orderField));
             }
         }
 
-        //没有排序字段，则不排序
-        if(StringUtils.isBlank(defaultOrderField)){
+        // 没有排序字段，则不排序
+        if (StringUtils.isBlank(defaultOrderField)) {
             return page;
         }
 
-        //默认排序
-        if(isAsc) {
+        // 默认排序
+        if (isAsc) {
             page.addOrder(OrderItem.asc(defaultOrderField));
-        }else {
+        } else {
             page.addOrder(OrderItem.desc(defaultOrderField));
         }
 
         return page;
     }
 
-    protected <T> PageData<T> getPageData(List<?> list, long total, Class<T> target){
+    protected <T> PageData<T> getPageData(List<?> list, long total, Class<T> target) {
+
         List<T> targetList = ConvertUtils.sourceToTarget(list, target);
 
         return new PageData<>(targetList, total);
     }
 
-    protected <T> PageData<T> getPageData(IPage page, Class<T> target){
+    protected <T> PageData<T> getPageData(IPage page, Class<T> target) {
+
         return getPageData(page.getRecords(), page.getTotal(), target);
     }
 
-    protected void paramsToLike(Map<String, Object> params, String... likes){
-        for (String like : likes){
-            String val = (String)params.get(like);
-            if (StringUtils.isNotBlank(val)){
+    protected void paramsToLike(Map<String, Object> params, String... likes) {
+
+        for (String like : likes) {
+            String val = (String) params.get(like);
+            if (StringUtils.isNotBlank(val)) {
                 params.put(like, "%" + val + "%");
-            }else {
+            } else {
                 params.put(like, null);
             }
         }
@@ -130,30 +137,36 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T>  implements Ba
      * @return boolean
      */
     protected static boolean retBool(Integer result) {
+
         return SqlHelper.retBool(result);
     }
 
     protected Class<M> currentMapperClass() {
+
         return (Class<M>) ReflectionKit.getSuperClassGenericType(this.getClass(), BaseServiceImpl.class, 0);
     }
 
     @Override
     public Class<T> currentModelClass() {
-        return (Class<T>)ReflectionKit.getSuperClassGenericType(this.getClass(), BaseServiceImpl.class, 1);
+
+        return (Class<T>) ReflectionKit.getSuperClassGenericType(this.getClass(), BaseServiceImpl.class, 1);
     }
 
     protected String getSqlStatement(SqlMethod sqlMethod) {
+
         return SqlHelper.getSqlStatement(this.currentMapperClass(), sqlMethod);
     }
 
     @Override
     public boolean insert(T entity) {
+
         return BaseServiceImpl.retBool(baseDao.insert(entity));
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean insertBatch(Collection<T> entityList) {
+
         return insertBatch(entityList, 100);
     }
 
@@ -163,6 +176,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T>  implements Ba
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean insertBatch(Collection<T> entityList, int batchSize) {
+
         String sqlStatement = getSqlStatement(SqlMethod.INSERT_ONE);
         return executeBatch(entityList, batchSize, (sqlSession, entity) -> sqlSession.insert(sqlStatement, entity));
     }
@@ -171,29 +185,34 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T>  implements Ba
      * 执行批量操作
      */
     protected <E> boolean executeBatch(Collection<E> list, int batchSize, BiConsumer<SqlSession, E> consumer) {
+
         return SqlHelper.executeBatch(this.currentModelClass(), this.log, list, batchSize, consumer);
     }
 
 
     @Override
     public boolean updateById(T entity) {
+
         return BaseServiceImpl.retBool(baseDao.updateById(entity));
     }
 
     @Override
     public boolean update(T entity, Wrapper<T> updateWrapper) {
+
         return BaseServiceImpl.retBool(baseDao.update(entity, updateWrapper));
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean updateBatchById(Collection<T> entityList) {
+
         return updateBatchById(entityList, 30);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean updateBatchById(Collection<T> entityList, int batchSize) {
+
         String sqlStatement = getSqlStatement(SqlMethod.UPDATE_BY_ID);
         return executeBatch(entityList, batchSize, (sqlSession, entity) -> {
             MapperMethod.ParamMap<T> param = new MapperMethod.ParamMap<>();
@@ -204,16 +223,19 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T>  implements Ba
 
     @Override
     public T selectById(Serializable id) {
+
         return baseDao.selectById(id);
     }
 
     @Override
     public boolean deleteById(Serializable id) {
+
         return SqlHelper.retBool(baseDao.deleteById(id));
     }
 
     @Override
     public boolean deleteBatchIds(Collection<? extends Serializable> idList) {
+
         return SqlHelper.retBool(baseDao.deleteBatchIds(idList));
     }
 }

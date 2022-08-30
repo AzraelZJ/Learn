@@ -22,20 +22,20 @@ public class CategoryBrandRelationDTO implements Serializable {
 	@Serial
     private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "品牌分类关联id")
 	private Long id;
 
 	@ApiModelProperty(value = "品牌id")
 	private Long brandId;
 
 	@ApiModelProperty(value = "分类id")
-	private Long catelogId;
+	private Long catId;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "品牌名称")
 	private String brandName;
 
-	@ApiModelProperty(value = "")
-	private String catelogName;
+	@ApiModelProperty(value = "所属分类名称")
+	private String categoryName;
 
 	@ApiModelProperty(value = "记录创建者")
 	private Long creator;
@@ -45,6 +45,4 @@ public class CategoryBrandRelationDTO implements Serializable {
 
 	@ApiModelProperty(value = "记录修改时间")
 	private Date updateDate;
-
-
 }
