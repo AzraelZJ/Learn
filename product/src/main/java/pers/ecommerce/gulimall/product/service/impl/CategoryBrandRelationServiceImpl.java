@@ -33,10 +33,10 @@ public class CategoryBrandRelationServiceImpl extends CrudServiceImpl<CategoryBr
     @Override
     public QueryWrapper<CategoryBrandRelationEntity> getWrapper(Map<String, Object> params) {
 
-        String id = (String) params.get("id");
+        String brandId = (String) params.get("brandId");
 
         QueryWrapper<CategoryBrandRelationEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
+        wrapper.eq(StringUtils.isNotBlank(brandId), "brand_id", brandId);
 
         return wrapper;
     }

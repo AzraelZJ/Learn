@@ -60,6 +60,7 @@
         <lombok.version>1.18.24</lombok.version>
         <docker.plugin.version>1.1.1</docker.plugin.version>
         <mybatis-plus-boot-starter.version>3.5.2</mybatis-plus-boot-starter.version>
+        <spring-boot.version>2.6.7</spring-boot.version>
     </properties>
 
     <dependencies>
@@ -276,4 +277,18 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <!-- 解决 Windows 命令行窗口中文乱码问题 -->
+                    <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
