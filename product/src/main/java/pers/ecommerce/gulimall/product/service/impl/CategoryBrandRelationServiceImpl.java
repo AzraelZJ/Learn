@@ -1,6 +1,7 @@
 package pers.ecommerce.gulimall.product.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,5 +61,37 @@ public class CategoryBrandRelationServiceImpl extends CrudServiceImpl<CategoryBr
         categoryBrandRelationDTO.setCategoryName(categoryName);
 
         this.save(categoryBrandRelationDTO);
+    }
+
+    /**
+     * 更新品牌相关信息
+     *
+     * @param brandId   品牌id
+     * @param brandName 品牌名称
+     */
+    @Override
+    public void updateBrandInfo(Long brandId, String brandName) {
+
+        CategoryBrandRelationEntity categoryBrandRelationEntity = new CategoryBrandRelationEntity();
+        categoryBrandRelationEntity.setBrandId(brandId);
+        categoryBrandRelationEntity.setBrandName(brandName);
+
+        UpdateWrapper<CategoryBrandRelationEntity> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("brand_id", brandId);
+
+        this.update(categoryBrandRelationEntity, updateWrapper);
+    }
+
+    /**
+     * 更新商品三级分类相关信息
+     *
+     * @param catId 商品三级分类id
+     * @param categoryName 商品分类名称
+     */
+    @Override
+    public void updateCategoryInfo(Long catId, String categoryName) {
+
+        // 使用 Mapper 接口实现
+        this.baseDao.updateCategory(catId, categoryName);
     }
 }

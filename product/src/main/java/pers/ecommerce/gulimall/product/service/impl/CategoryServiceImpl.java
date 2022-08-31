@@ -2,11 +2,14 @@ package pers.ecommerce.gulimall.product.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.ecommerce.gulimall.common.service.impl.CrudServiceImpl;
+import pers.ecommerce.gulimall.common.utils.ConvertUtils;
 import pers.ecommerce.gulimall.product.dao.CategoryDao;
 import pers.ecommerce.gulimall.product.dto.CategoryDTO;
 import pers.ecommerce.gulimall.product.entity.CategoryEntity;
+import pers.ecommerce.gulimall.product.service.CategoryBrandRelationService;
 import pers.ecommerce.gulimall.product.service.CategoryService;
 
 import java.util.*;
@@ -19,6 +22,9 @@ import java.util.*;
  */
 @Service
 public class CategoryServiceImpl extends CrudServiceImpl<CategoryDao, CategoryEntity, CategoryDTO> implements CategoryService {
+
+    @Autowired
+    CategoryBrandRelationService categoryBrandRelationService;
 
     @Override
     public QueryWrapper<CategoryEntity> getWrapper(Map<String, Object> params) {
@@ -75,6 +81,20 @@ public class CategoryServiceImpl extends CrudServiceImpl<CategoryDao, CategoryEn
         Collections.reverse(catIdList);
 
         return catIdList.toArray(new Long[0]);
+    }
+
+    /**
+     * 更新所有使用到商品三级分类的表
+     *
+     * @param categoryDTO 三级分类信息
+     */
+    @Override
+    public void updateCategory(CategoryDTO categoryDTO) {
+
+        CategoryEntity categoryEntity = ConvertUtils.sourceToTarget(categoryDTO, currentModelClass());
+        updateById(categoryEntity);
+
+        categoryBrandRelationService.updateCategoryInfo(categoryEntity.getCatId(), categoryEntity.getName());
     }
 
     /**

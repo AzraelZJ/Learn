@@ -12,4 +12,10 @@ import pers.ecommerce.gulimall.product.entity.BrandEntity;
  */
 public interface BrandService extends CrudService<BrandEntity, BrandDTO> {
 
+    /**
+     * 更新品牌信息时，同步更新其它表内涉及的品牌信息
+     *
+     * @param brandDTO 品牌信息
+     */
+    void updateBrand(BrandDTO brandDTO);
 }

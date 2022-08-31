@@ -7,6 +7,10 @@ spring:
   application:
     name: product
 
+  main:
+    # 允许循环依赖
+    allow-circular-references: true
+
   devtools:
     livereload:
       port: 10001

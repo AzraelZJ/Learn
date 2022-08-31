@@ -7,13 +7,17 @@
     <resultMap type="pers.ecommerce.gulimall.product.entity.CategoryBrandRelationEntity" id="categoryBrandRelationMap">
         <result property="id" column="id"/>
         <result property="brandId" column="brand_id"/>
-        <result property="catelogId" column="catelog_id"/>
+        <result property="catId" column="catelog_id"/>
         <result property="brandName" column="brand_name"/>
-        <result property="catelogName" column="catelog_name"/>
+        <result property="categoryName" column="catelog_name"/>
         <result property="creator" column="creator"/>
         <result property="createDate" column="create_date"/>
         <result property="updateDate" column="update_date"/>
     </resultMap>
-
+    <update id="updateCategory">
+        update pms_category_brand_relation
+        set category_name=#{categoryName}
+        where cat_id = #{catId}
+    </update>
 
 </mapper>

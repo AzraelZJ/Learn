@@ -27,4 +27,11 @@ public interface CategoryService extends CrudService<CategoryEntity, CategoryDTO
      * @return 商品三级分类列表
      */
     Long[] getCatIdList(Long catId);
+
+    /**
+     * 更新所有使用到商品三级分类的表
+     *
+     * @param categoryDTO 三级分类信息
+     */
+    void updateCategory(CategoryDTO categoryDTO);
 }

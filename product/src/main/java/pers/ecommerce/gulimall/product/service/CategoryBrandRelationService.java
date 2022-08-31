@@ -17,4 +17,20 @@ public interface CategoryBrandRelationService extends CrudService<CategoryBrandR
      * @param categoryBrandRelationDTO dto
      */
     void saveDetail(CategoryBrandRelationDTO categoryBrandRelationDTO);
+
+    /**
+     * 更新品牌相关数据
+     *
+     * @param brandId 品牌id
+     * @param brandName 品牌名称
+     */
+    void updateBrandInfo(Long brandId, String brandName);
+
+    /**
+     * 更新商品三级分类相关信息
+     *
+     * @param catId 商品三级分类id
+     * @param categoryName 商品分类名称
+     */
+    void updateCategoryInfo(Long catId, String categoryName);
 }

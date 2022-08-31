@@ -105,7 +105,7 @@ public class CategoryController {
         // 效验数据
         ValidatorUtils.validateEntity(categoryDTO, UpdateGroup.class, DefaultGroup.class);
 
-        categoryService.update(categoryDTO);
+        categoryService.updateCategory(categoryDTO);
 
         return new Result<>();
     }

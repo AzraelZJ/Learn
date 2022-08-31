@@ -14,7 +14,6 @@ import pers.ecommerce.gulimall.common.utils.ExcelUtils;
 import pers.ecommerce.gulimall.common.utils.Result;
 import pers.ecommerce.gulimall.common.validator.AssertUtils;
 import pers.ecommerce.gulimall.common.validator.ValidatorUtils;
-import pers.ecommerce.gulimall.common.validator.group.AddGroup;
 import pers.ecommerce.gulimall.common.validator.group.DefaultGroup;
 import pers.ecommerce.gulimall.common.validator.group.UpdateGroup;
 import pers.ecommerce.gulimall.product.dto.CategoryBrandRelationDTO;
@@ -82,13 +81,13 @@ public class CategoryBrandRelationController {
     }
 
     @PostMapping
-    @ApiOperation("关联分类")
-    @LogOperation("关联分类")
+    @ApiOperation("保存")
+    @LogOperation("保存")
     @RequiresPermissions("product:categorybrandrelation:save")
     public Result<CategoryBrandRelationDTO> save(@RequestBody CategoryBrandRelationDTO categoryBrandRelationDTO) {
 
         // 效验数据
-        ValidatorUtils.validateEntity(categoryBrandRelationDTO, AddGroup.class, DefaultGroup.class);
+        // ValidatorUtils.validateEntity(categoryBrandRelationDTO, AddGroup.class, DefaultGroup.class);
 
         categoryBrandRelationService.saveDetail(categoryBrandRelationDTO);
 

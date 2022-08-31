@@ -140,7 +140,7 @@ public class BrandController {
         // 效验数据
         // ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
 
-        brandService.update(dto);
+        brandService.updateBrand(dto);
 
         return new Result<>();
     }
