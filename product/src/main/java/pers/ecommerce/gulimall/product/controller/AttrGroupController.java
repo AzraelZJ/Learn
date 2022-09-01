@@ -60,6 +60,24 @@ public class AttrGroupController {
         return new Result<PageData<AttrGroupDTO>>().ok(page);
     }
 
+    @GetMapping("fuzzyquery/{catId}")
+    @ApiOperation("分页模糊查询")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType = "String")
+    })
+    @RequiresPermissions("product:attrgroup:page")
+    public Result<PageData<AttrGroupDTO>> fuzzyQuery(
+            @ApiIgnore @RequestParam Map<String, Object> params,
+            @PathVariable("catId") Long catId) {
+
+        PageData<AttrGroupDTO> fuzzyQueryPage = attrGroupService.fuzzyQuery(params, catId);
+
+        return new Result<PageData<AttrGroupDTO>>().ok(fuzzyQueryPage);
+    }
+
     @GetMapping("{attrGroupId}")
     @ApiOperation("信息")
     @RequiresPermissions("product:attrgroup:info")
