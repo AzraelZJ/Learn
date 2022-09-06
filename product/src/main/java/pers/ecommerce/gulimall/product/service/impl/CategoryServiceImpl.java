@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pers.ecommerce.gulimall.common.service.impl.CrudServiceImpl;
 import pers.ecommerce.gulimall.common.utils.ConvertUtils;
 import pers.ecommerce.gulimall.product.dao.CategoryDao;
@@ -89,6 +90,7 @@ public class CategoryServiceImpl extends CrudServiceImpl<CategoryDao, CategoryEn
      * @param categoryDTO 三级分类信息
      */
     @Override
+    @Transactional
     public void updateCategory(CategoryDTO categoryDTO) {
 
         CategoryEntity categoryEntity = ConvertUtils.sourceToTarget(categoryDTO, currentModelClass());

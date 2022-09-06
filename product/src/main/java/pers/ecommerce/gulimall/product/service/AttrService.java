@@ -12,4 +12,10 @@ import pers.ecommerce.gulimall.product.entity.AttrEntity;
  */
 public interface AttrService extends CrudService<AttrEntity, AttrDTO> {
 
+    /**
+     * 保存商品属性信息
+     *
+     * @param dto 属性信息
+     */
+    void saveAttr(AttrDTO dto);
 }

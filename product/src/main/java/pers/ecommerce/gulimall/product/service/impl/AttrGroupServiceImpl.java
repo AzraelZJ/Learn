@@ -37,27 +37,23 @@ public class AttrGroupServiceImpl extends CrudServiceImpl<AttrGroupDao,
     @Override
     public PageData<AttrGroupDTO> fuzzyQuery(Map<String, Object> params, Long catId) {
 
-        if (catId == 0) {
-            IPage<AttrGroupEntity> page = baseDao.selectPage(
-                    getPage(params, null, false),
-                    new QueryWrapper<>()
-            );
-
-            return getPageData(page, currentDtoClass());
-        } else {
-            String keyword = (String) params.get("keyword");
-            // select * from pms_attr_group where catId=? and (attr_group_id=? or attr_group_name like %%)
-            QueryWrapper<AttrGroupEntity> wrapper = new QueryWrapper<AttrGroupEntity>().eq("cat_id", catId);
-            if (!StringUtils.isEmpty(keyword)) {
-                wrapper.and((obj) ->
-                        obj.eq("attr_group_id", keyword).or().like("attr_group_name", keyword));
-            }
-
-            IPage<AttrGroupEntity> page = baseDao.selectPage(
-                    getPage(params, null, false), wrapper
-            );
-
-            return getPageData(page, currentDtoClass());
+        String keyword = (String) params.get("keyword");
+        // select * from pms_attr_group where catId=? and (attr_group_id=? or attr_group_name like %%)
+        QueryWrapper<AttrGroupEntity> wrapper = new QueryWrapper<>();
+        if (!StringUtils.isEmpty(keyword)) {
+            wrapper.and((obj) -> obj.eq("attr_group_id", keyword).or().like("attr_group_name", keyword));
         }
+
+        IPage<AttrGroupEntity> page;
+        if (catId == 0) {
+            page = baseDao.selectPage(
+                    getPage(params, null, false), wrapper);
+
+        } else {
+            page = baseDao.selectPage(
+                    getPage(params, null, false), wrapper.eq("cat_id", catId));
+
+        }
+        return getPageData(page, currentDtoClass());
     }
 }

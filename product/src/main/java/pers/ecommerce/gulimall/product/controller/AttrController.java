@@ -34,7 +34,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("product/attr")
-@Api(tags = "商品属性" )
+@Api(tags = "商品属性")
 public class AttrController {
 
     @Autowired
@@ -43,10 +43,10 @@ public class AttrController {
     @GetMapping("page")
     @ApiOperation("分页")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType = "int" ),
-            @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query", required = true, dataType = "int" ),
-            @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType = "String" ),
-            @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType = "String" )
+            @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType = "String")
     })
     @RequiresPermissions("product:attr:page")
     public Result<PageData<AttrDTO>> page(@ApiIgnore @RequestParam Map<String, Object> params) {
@@ -61,7 +61,7 @@ public class AttrController {
     @RequiresPermissions("product:attr:info")
     public Result<AttrDTO> get(@PathVariable("id") Long id) {
 
-            AttrDTO data = attrService.get(id);
+        AttrDTO data = attrService.get(id);
 
         return new Result<AttrDTO>().ok(data);
     }
@@ -70,42 +70,42 @@ public class AttrController {
     @ApiOperation("保存")
     @LogOperation("保存")
     @RequiresPermissions("product:attr:save")
-    public Result save(@RequestBody AttrDTO dto) {
+    public Result<AttrDTO> save(@RequestBody AttrDTO dto) {
 
-        //效验数据
+        // 效验数据
         ValidatorUtils.validateEntity(dto, AddGroup.class, DefaultGroup.class);
 
-            attrService.save(dto);
+        attrService.saveAttr(dto);
 
-        return new Result();
+        return new Result<>();
     }
 
     @PutMapping
     @ApiOperation("修改")
     @LogOperation("修改")
     @RequiresPermissions("product:attr:update")
-    public Result update(@RequestBody AttrDTO dto) {
+    public Result<AttrDTO> update(@RequestBody AttrDTO dto) {
 
-        //效验数据
+        // 效验数据
         ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
 
-            attrService.update(dto);
+        attrService.update(dto);
 
-        return new Result();
+        return new Result<>();
     }
 
     @DeleteMapping
     @ApiOperation("删除")
     @LogOperation("删除")
     @RequiresPermissions("product:attr:delete")
-    public Result delete(@RequestBody Long[] ids) {
+    public Result<Long[]> delete(@RequestBody Long[] ids) {
 
-        //效验数据
+        // 效验数据
         AssertUtils.isArrayEmpty(ids, "id");
 
-            attrService.delete(ids);
+        attrService.delete(ids);
 
-        return new Result();
+        return new Result<>();
     }
 
     @GetMapping("export")

@@ -2,6 +2,7 @@ package pers.ecommerce.gulimall.product.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import pers.ecommerce.gulimall.common.service.impl.CrudServiceImpl;
 import pers.ecommerce.gulimall.common.utils.ConvertUtils;
 import pers.ecommerce.gulimall.product.dao.BrandDao;
@@ -43,6 +44,7 @@ public class BrandServiceImpl extends CrudServiceImpl<BrandDao, BrandEntity, Bra
      * @param brandDTO 品牌信息
      */
     @Override
+    @Transactional
     public void updateBrand(BrandDTO brandDTO) {
 
         /*

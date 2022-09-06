@@ -8,7 +8,6 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
-
 /**
  * 商品属性
  *
@@ -44,7 +43,10 @@ public class AttrDTO implements Serializable {
 	private Long enable;
 
 	@ApiModelProperty(value = "所属分类")
-	private Long catelogId;
+	private Long catId;
+
+	@ApiModelProperty(value = "分组id")
+	private Long attrGroupId;
 
 	@ApiModelProperty(value = "快速展示，是否展示在介绍上；[0: 否; 1: 是]，在sku中仍然可以调整")
 	private Integer showDesc;
