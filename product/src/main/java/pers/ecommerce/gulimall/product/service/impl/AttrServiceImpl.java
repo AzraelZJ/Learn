@@ -46,17 +46,21 @@ public class AttrServiceImpl extends CrudServiceImpl<AttrDao, AttrEntity, AttrDT
      * @param dto 属性信息
      */
     @Override
-    @Transactional
+    @Transactional()
     public void saveAttr(AttrDTO dto) {
+
+        System.out.println(dto);
 
         // 保存基本数据
         AttrEntity attrEntity = ConvertUtils.sourceToTarget(dto, currentModelClass());
         insert(attrEntity);
+        System.out.println(attrEntity);
 
         // 保存关联关系
         AttrAttrgroupRelationEntity attrAttrgroupRelationEntity = new AttrAttrgroupRelationEntity();
         attrAttrgroupRelationEntity.setAttrGroupId(dto.getAttrGroupId());
-        attrAttrgroupRelationEntity.setAttrId(dto.getAttrId());
+        attrAttrgroupRelationEntity.setAttrId(attrEntity.getAttrId());
+        System.out.println(attrAttrgroupRelationEntity);
 
         attrAttrgroupRelationDao.insert(attrAttrgroupRelationEntity);
     }

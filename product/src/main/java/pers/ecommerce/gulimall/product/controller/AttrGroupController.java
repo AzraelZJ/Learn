@@ -60,6 +60,16 @@ public class AttrGroupController {
         return new Result<PageData<AttrGroupDTO>>().ok(page);
     }
 
+    @GetMapping("list")
+    @ApiOperation("查询")
+    @RequiresPermissions("product:attrgroup:list")
+    public Result<List<AttrGroupDTO>> list(@RequestParam Map<String,Object> params){
+
+        List<AttrGroupDTO> list = attrGroupService.list(params);
+
+        return new Result<List<AttrGroupDTO>>().ok(list);
+    }
+
     @GetMapping("fuzzyquery/{catId}")
     @ApiOperation("分页模糊查询")
     @ApiImplicitParams({
