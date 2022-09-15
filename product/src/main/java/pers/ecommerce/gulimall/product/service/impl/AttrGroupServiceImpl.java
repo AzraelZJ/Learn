@@ -39,19 +39,19 @@ public class AttrGroupServiceImpl extends CrudServiceImpl<AttrGroupDao,
 
         String keyword = (String) params.get("keyword");
         // select * from pms_attr_group where catId=? and (attr_group_id=? or attr_group_name like %%)
-        QueryWrapper<AttrGroupEntity> wrapper = new QueryWrapper<>();
+        QueryWrapper<AttrGroupEntity> queryWrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(keyword)) {
-            wrapper.and((obj) -> obj.eq("attr_group_id", keyword).or().like("attr_group_name", keyword));
+            queryWrapper.and((wrapper) -> wrapper.eq("attr_group_id", keyword).or().like("attr_group_name", keyword));
         }
 
         IPage<AttrGroupEntity> page;
         if (catId == 0) {
             page = baseDao.selectPage(
-                    getPage(params, null, false), wrapper);
+                    getPage(params, null, false), queryWrapper);
 
         } else {
             page = baseDao.selectPage(
-                    getPage(params, null, false), wrapper.eq("cat_id", catId));
+                    getPage(params, null, false), queryWrapper.eq("cat_id", catId));
 
         }
         return getPageData(page, currentDtoClass());

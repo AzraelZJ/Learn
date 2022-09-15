@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pers.ecommerce.gulimall.common.service.impl.CrudServiceImpl;
 import pers.ecommerce.gulimall.common.utils.ConvertUtils;
 import pers.ecommerce.gulimall.product.dao.BrandDao;
+import pers.ecommerce.gulimall.product.dao.CategoryBrandRelationDao;
 import pers.ecommerce.gulimall.product.dto.BrandDTO;
 import pers.ecommerce.gulimall.product.entity.BrandEntity;
 import pers.ecommerce.gulimall.product.service.BrandService;
@@ -26,6 +27,9 @@ public class BrandServiceImpl extends CrudServiceImpl<BrandDao, BrandEntity, Bra
 
     @Autowired
     CategoryBrandRelationService categoryBrandRelationService;
+
+    @Autowired
+    CategoryBrandRelationDao categoryBrandRelationDao;
 
     @Override
     public QueryWrapper<BrandEntity> getWrapper(Map<String, Object> params) {

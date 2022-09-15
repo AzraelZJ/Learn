@@ -6,12 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.ecommerce.gulimall.common.service.impl.CrudServiceImpl;
+import pers.ecommerce.gulimall.product.dao.BrandDao;
 import pers.ecommerce.gulimall.product.dao.CategoryBrandRelationDao;
+import pers.ecommerce.gulimall.product.dao.CategoryDao;
 import pers.ecommerce.gulimall.product.dto.CategoryBrandRelationDTO;
 import pers.ecommerce.gulimall.product.entity.CategoryBrandRelationEntity;
-import pers.ecommerce.gulimall.product.service.BrandService;
 import pers.ecommerce.gulimall.product.service.CategoryBrandRelationService;
-import pers.ecommerce.gulimall.product.service.CategoryService;
 
 import java.util.Map;
 
@@ -26,10 +26,10 @@ public class CategoryBrandRelationServiceImpl extends CrudServiceImpl<CategoryBr
         CategoryBrandRelationEntity, CategoryBrandRelationDTO> implements CategoryBrandRelationService {
 
     @Autowired
-    BrandService brandService;
+    BrandDao brandDao;
 
     @Autowired
-    CategoryService categoryService;
+    CategoryDao categoryDao;
 
     @Override
     public QueryWrapper<CategoryBrandRelationEntity> getWrapper(Map<String, Object> params) {
@@ -54,11 +54,8 @@ public class CategoryBrandRelationServiceImpl extends CrudServiceImpl<CategoryBr
         Long catId = categoryBrandRelationDTO.getCatId();
 
         // 根据 id，查询品牌名称和商品三级分类名称
-        String brandName = brandService.get(brandId).getName();
-        String categoryName = categoryService.get(catId).getName();
-
-        categoryBrandRelationDTO.setBrandName(brandName);
-        categoryBrandRelationDTO.setCategoryName(categoryName);
+        categoryBrandRelationDTO.setBrandName(brandDao.selectById(brandId).getName());
+        categoryBrandRelationDTO.setCategoryName(categoryDao.selectById(catId).getName());
 
         this.save(categoryBrandRelationDTO);
     }
@@ -85,7 +82,7 @@ public class CategoryBrandRelationServiceImpl extends CrudServiceImpl<CategoryBr
     /**
      * 更新商品三级分类相关信息
      *
-     * @param catId 商品三级分类id
+     * @param catId        商品三级分类id
      * @param categoryName 商品分类名称
      */
     @Override
