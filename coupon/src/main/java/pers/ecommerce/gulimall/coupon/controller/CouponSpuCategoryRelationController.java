@@ -61,7 +61,7 @@ public class CouponSpuCategoryRelationController {
     @RequiresPermissions("coupon:couponspucategoryrelation:info")
     public Result<CouponSpuCategoryRelationDTO> get(@PathVariable("id") Long id) {
 
-            CouponSpuCategoryRelationDTO data = couponSpuCategoryRelationService.get(id);
+            CouponSpuCategoryRelationDTO data = couponSpuCategoryRelationService.getAttr(id);
 
         return new Result<CouponSpuCategoryRelationDTO>().ok(data);
     }

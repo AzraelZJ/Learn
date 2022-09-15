@@ -61,7 +61,7 @@ public class OrderReturnApplyController {
     @RequiresPermissions("order:orderreturnapply:info")
     public Result<OrderReturnApplyDTO> get(@PathVariable("id") Long id) {
 
-            OrderReturnApplyDTO data = orderReturnApplyService.get(id);
+            OrderReturnApplyDTO data = orderReturnApplyService.getAttr(id);
 
         return new Result<OrderReturnApplyDTO>().ok(data);
     }

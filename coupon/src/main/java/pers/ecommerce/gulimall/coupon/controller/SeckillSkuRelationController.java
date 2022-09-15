@@ -61,7 +61,7 @@ public class SeckillSkuRelationController {
     @RequiresPermissions("coupon:seckillskurelation:info")
     public Result<SeckillSkuRelationDTO> get(@PathVariable("id") Long id) {
 
-            SeckillSkuRelationDTO data = seckillSkuRelationService.get(id);
+            SeckillSkuRelationDTO data = seckillSkuRelationService.getAttr(id);
 
         return new Result<SeckillSkuRelationDTO>().ok(data);
     }

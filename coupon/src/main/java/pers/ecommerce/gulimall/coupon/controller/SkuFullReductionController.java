@@ -61,7 +61,7 @@ public class SkuFullReductionController {
     @RequiresPermissions("coupon:skufullreduction:info")
     public Result<SkuFullReductionDTO> get(@PathVariable("id") Long id) {
 
-            SkuFullReductionDTO data = skuFullReductionService.get(id);
+            SkuFullReductionDTO data = skuFullReductionService.getAttr(id);
 
         return new Result<SkuFullReductionDTO>().ok(data);
     }

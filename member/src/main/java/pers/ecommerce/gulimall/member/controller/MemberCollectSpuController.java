@@ -61,7 +61,7 @@ public class MemberCollectSpuController {
     @RequiresPermissions("member:membercollectspu:info")
     public Result<MemberCollectSpuDTO> get(@PathVariable("id") Long id) {
 
-            MemberCollectSpuDTO data = memberCollectSpuService.get(id);
+            MemberCollectSpuDTO data = memberCollectSpuService.getAttr(id);
 
         return new Result<MemberCollectSpuDTO>().ok(data);
     }

@@ -61,7 +61,7 @@ public class PurchaseDetailController {
     @RequiresPermissions("ware:purchasedetail:info")
     public Result<PurchaseDetailDTO> get(@PathVariable("id") Long id) {
 
-            PurchaseDetailDTO data = purchaseDetailService.get(id);
+            PurchaseDetailDTO data = purchaseDetailService.getAttr(id);
 
         return new Result<PurchaseDetailDTO>().ok(data);
     }

@@ -61,7 +61,7 @@ public class UndoLogController {
     @RequiresPermissions("ware:undolog:info")
     public Result<UndoLogDTO> get(@PathVariable("id") Long id) {
 
-            UndoLogDTO data = undoLogService.get(id);
+            UndoLogDTO data = undoLogService.getAttr(id);
 
         return new Result<UndoLogDTO>().ok(data);
     }

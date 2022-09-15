@@ -80,7 +80,7 @@ public class AttrController {
     @RequiresPermissions("product:attr:info")
     public Result<AttrDTO> get(@PathVariable("attrId") Long attrId) {
 
-        AttrDTO data = attrService.get(attrId);
+        AttrDTO data = attrService.getAttr(attrId);
 
         return new Result<AttrDTO>().ok(data);
     }
@@ -103,12 +103,13 @@ public class AttrController {
     @ApiOperation("修改")
     @LogOperation("修改")
     @RequiresPermissions("product:attr:update")
-    public Result<AttrDTO> update(@RequestBody AttrDTO dto) {
+    public Result<AttrDTO> update(@RequestBody AttrDTO attrDTO) {
 
         // 效验数据
-        ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
+        ValidatorUtils.validateEntity(attrDTO, UpdateGroup.class, DefaultGroup.class);
 
-        attrService.update(dto);
+        attrService.updateAttr(attrDTO);
+        System.out.println(attrDTO);
 
         return new Result<>();
     }

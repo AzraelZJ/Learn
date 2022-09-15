@@ -61,7 +61,7 @@ public class IntegrationChangeHistoryController {
     @RequiresPermissions("member:integrationchangehistory:info")
     public Result<IntegrationChangeHistoryDTO> get(@PathVariable("id") Long id) {
 
-            IntegrationChangeHistoryDTO data = integrationChangeHistoryService.get(id);
+            IntegrationChangeHistoryDTO data = integrationChangeHistoryService.getAttr(id);
 
         return new Result<IntegrationChangeHistoryDTO>().ok(data);
     }

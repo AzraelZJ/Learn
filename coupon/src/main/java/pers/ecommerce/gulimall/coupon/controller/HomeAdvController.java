@@ -61,7 +61,7 @@ public class HomeAdvController {
     @RequiresPermissions("coupon:homeadv:info")
     public Result<HomeAdvDTO> get(@PathVariable("id") Long id) {
 
-            HomeAdvDTO data = homeAdvService.get(id);
+            HomeAdvDTO data = homeAdvService.getAttr(id);
 
         return new Result<HomeAdvDTO>().ok(data);
     }

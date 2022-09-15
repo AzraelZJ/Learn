@@ -42,5 +42,11 @@ public interface AttrService extends CrudService<AttrEntity, AttrDTO> {
      * @param attrId 属性id
      * @return 查询结果
      */
-    AttrDTO get(Long attrId);
+    AttrDTO getAttr(Long attrId);
+
+    /**
+     * 修改商品属性信息
+     * @param attrDTO 商品属性DTO
+     */
+    void updateAttr(AttrDTO attrDTO);
 }

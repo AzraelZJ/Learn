@@ -85,7 +85,7 @@ public class MemberController {
     @RequiresPermissions("member:member:info")
     public Result<MemberDTO> get(@PathVariable("id") Long id) {
 
-        MemberDTO data = memberService.get(id);
+        MemberDTO data = memberService.getAttr(id);
 
         return new Result<MemberDTO>().ok(data);
     }

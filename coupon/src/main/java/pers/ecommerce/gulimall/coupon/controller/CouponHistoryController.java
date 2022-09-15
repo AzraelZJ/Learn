@@ -61,7 +61,7 @@ public class CouponHistoryController {
     @RequiresPermissions("coupon:couponhistory:info")
     public Result<CouponHistoryDTO> get(@PathVariable("id") Long id) {
 
-            CouponHistoryDTO data = couponHistoryService.get(id);
+            CouponHistoryDTO data = couponHistoryService.getAttr(id);
 
         return new Result<CouponHistoryDTO>().ok(data);
     }

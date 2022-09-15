@@ -61,7 +61,7 @@ public class OrderReturnReasonController {
     @RequiresPermissions("order:orderreturnreason:info")
     public Result<OrderReturnReasonDTO> get(@PathVariable("id") Long id) {
 
-            OrderReturnReasonDTO data = orderReturnReasonService.get(id);
+            OrderReturnReasonDTO data = orderReturnReasonService.getAttr(id);
 
         return new Result<OrderReturnReasonDTO>().ok(data);
     }

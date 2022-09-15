@@ -91,6 +91,7 @@ public class CategoryServiceImpl extends CrudServiceImpl<CategoryDao, CategoryEn
      */
     @Override
     @Transactional
+    // TODO 实现事务回滚
     public void updateCategory(CategoryDTO categoryDTO) {
 
         CategoryEntity categoryEntity = ConvertUtils.sourceToTarget(categoryDTO, currentModelClass());

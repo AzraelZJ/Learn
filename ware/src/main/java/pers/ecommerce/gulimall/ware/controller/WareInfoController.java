@@ -61,7 +61,7 @@ public class WareInfoController {
     @RequiresPermissions("ware:wareinfo:info")
     public Result<WareInfoDTO> get(@PathVariable("id") Long id) {
 
-            WareInfoDTO data = wareInfoService.get(id);
+            WareInfoDTO data = wareInfoService.getAttr(id);
 
         return new Result<WareInfoDTO>().ok(data);
     }

@@ -1,6 +1,7 @@
 package pers.ecommerce.gulimall.product.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
@@ -159,7 +160,7 @@ public class AttrServiceImpl extends CrudServiceImpl<AttrDao, AttrEntity, AttrDT
      * @return 查询结果
      */
     @Override
-    public AttrDTO get(Long attrId) {
+    public AttrDTO getAttr(Long attrId) {
 
         AttrEntity attrEntity = baseDao.selectById(attrId);
         AttrDTO attrDTO = ConvertUtils.sourceToTarget(attrEntity, AttrDTO.class);
@@ -196,5 +197,44 @@ public class AttrServiceImpl extends CrudServiceImpl<AttrDao, AttrEntity, AttrDT
         }
 
         return attrDTO;
+    }
+
+    /**
+     * 修改商品属性信息
+     *
+     * @param attrDTO 商品属性DTO
+     */
+    @Override
+    @Transactional
+    public void updateAttr(AttrDTO attrDTO) {
+
+        // 修改基本数据
+        AttrEntity attrEntity = ConvertUtils.sourceToTarget(attrDTO, AttrEntity.class);
+        updateById(attrEntity);
+
+        // 修改商品属性-属性分组关联表
+        AttrAttrgroupRelationEntity attrAttrgroupRelationEntity = new AttrAttrgroupRelationEntity();
+        AttrGroupEntity attrGroupEntity = attrGroupDao.selectById(attrDTO.getAttrGroupId());
+
+        attrAttrgroupRelationEntity.setAttrGroupId(attrDTO.getAttrGroupId());
+        attrAttrgroupRelationEntity.setAttrId(attrDTO.getAttrId());
+
+        if (attrGroupEntity != null) {
+            attrDTO.setAttrGroupName(attrGroupEntity.getAttrGroupName());
+        }
+
+        attrAttrgroupRelationDao.update(attrAttrgroupRelationEntity,
+                new UpdateWrapper<AttrAttrgroupRelationEntity>().eq("attr_id", attrDTO.getAttrId()));
+
+        // // 如果原始属性信息本身就没有所属分组就进行新增操作，否则进行修改操作
+        // Long count = attrAttrgroupRelationDao.selectCount(new QueryWrapper<AttrAttrgroupRelationEntity>()
+        //         .eq("attr_id", attrDTO.getAttrId()));
+        //
+        // if (count > 0) {
+        //     attrAttrgroupRelationDao.update(attrAttrgroupRelationEntity,
+        //             new UpdateWrapper<AttrAttrgroupRelationEntity>().eq("attr_id", attrDTO.getAttrId()));
+        // } else {
+        //     attrAttrgroupRelationDao.insert(attrAttrgroupRelationEntity);
+        // }
     }
 }

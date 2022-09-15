@@ -61,7 +61,7 @@ public class MemberLoginLogController {
     @RequiresPermissions("member:memberloginlog:info")
     public Result<MemberLoginLogDTO> get(@PathVariable("id") Long id) {
 
-            MemberLoginLogDTO data = memberLoginLogService.get(id);
+            MemberLoginLogDTO data = memberLoginLogService.getAttr(id);
 
         return new Result<MemberLoginLogDTO>().ok(data);
     }

@@ -61,7 +61,7 @@ public class RefundInfoController {
     @RequiresPermissions("order:refundinfo:info")
     public Result<RefundInfoDTO> get(@PathVariable("id") Long id) {
 
-            RefundInfoDTO data = refundInfoService.get(id);
+            RefundInfoDTO data = refundInfoService.getAttr(id);
 
         return new Result<RefundInfoDTO>().ok(data);
     }

@@ -61,7 +61,7 @@ public class SeckillSkuNoticeController {
     @RequiresPermissions("coupon:seckillskunotice:info")
     public Result<SeckillSkuNoticeDTO> get(@PathVariable("id") Long id) {
 
-            SeckillSkuNoticeDTO data = seckillSkuNoticeService.get(id);
+            SeckillSkuNoticeDTO data = seckillSkuNoticeService.getAttr(id);
 
         return new Result<SeckillSkuNoticeDTO>().ok(data);
     }

@@ -61,7 +61,7 @@ public class OrderController {
     @RequiresPermissions("order:order:info")
     public Result<OrderDTO> get(@PathVariable("id") Long id) {
 
-            OrderDTO data = orderService.get(id);
+            OrderDTO data = orderService.getAttr(id);
 
         return new Result<OrderDTO>().ok(data);
     }

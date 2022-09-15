@@ -61,7 +61,7 @@ public class HomeSubjectController {
     @RequiresPermissions("coupon:homesubject:info")
     public Result<HomeSubjectDTO> get(@PathVariable("id") Long id) {
 
-            HomeSubjectDTO data = homeSubjectService.get(id);
+            HomeSubjectDTO data = homeSubjectService.getAttr(id);
 
         return new Result<HomeSubjectDTO>().ok(data);
     }

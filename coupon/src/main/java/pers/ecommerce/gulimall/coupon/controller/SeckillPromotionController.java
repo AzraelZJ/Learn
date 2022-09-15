@@ -61,7 +61,7 @@ public class SeckillPromotionController {
     @RequiresPermissions("coupon:seckillpromotion:info")
     public Result<SeckillPromotionDTO> get(@PathVariable("id") Long id) {
 
-            SeckillPromotionDTO data = seckillPromotionService.get(id);
+            SeckillPromotionDTO data = seckillPromotionService.getAttr(id);
 
         return new Result<SeckillPromotionDTO>().ok(data);
     }
