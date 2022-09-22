@@ -61,7 +61,7 @@ public class SkuLadderController {
     @RequiresPermissions("coupon:skuladder:info")
     public Result<SkuLadderDTO> get(@PathVariable("id") Long id) {
 
-            SkuLadderDTO data = skuLadderService.getAttr(id);
+            SkuLadderDTO data = skuLadderService.get(id);
 
         return new Result<SkuLadderDTO>().ok(data);
     }

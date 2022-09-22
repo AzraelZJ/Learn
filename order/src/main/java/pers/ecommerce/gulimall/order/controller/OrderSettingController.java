@@ -61,7 +61,7 @@ public class OrderSettingController {
     @RequiresPermissions("order:ordersetting:info")
     public Result<OrderSettingDTO> get(@PathVariable("id") Long id) {
 
-            OrderSettingDTO data = orderSettingService.getAttr(id);
+            OrderSettingDTO data = orderSettingService.get(id);
 
         return new Result<OrderSettingDTO>().ok(data);
     }

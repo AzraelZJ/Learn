@@ -61,7 +61,7 @@ public class WareSkuController {
     @RequiresPermissions("ware:waresku:info")
     public Result<WareSkuDTO> get(@PathVariable("id") Long id) {
 
-            WareSkuDTO data = wareSkuService.getAttr(id);
+            WareSkuDTO data = wareSkuService.get(id);
 
         return new Result<WareSkuDTO>().ok(data);
     }

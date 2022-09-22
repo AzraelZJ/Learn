@@ -61,7 +61,7 @@ public class SpuBoundsController {
     @RequiresPermissions("coupon:spubounds:info")
     public Result<SpuBoundsDTO> get(@PathVariable("id") Long id) {
 
-            SpuBoundsDTO data = spuBoundsService.getAttr(id);
+            SpuBoundsDTO data = spuBoundsService.get(id);
 
         return new Result<SpuBoundsDTO>().ok(data);
     }

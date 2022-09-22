@@ -61,7 +61,7 @@ public class GrowthChangeHistoryController {
     @RequiresPermissions("member:growthchangehistory:info")
     public Result<GrowthChangeHistoryDTO> get(@PathVariable("id") Long id) {
 
-            GrowthChangeHistoryDTO data = growthChangeHistoryService.getAttr(id);
+            GrowthChangeHistoryDTO data = growthChangeHistoryService.get(id);
 
         return new Result<GrowthChangeHistoryDTO>().ok(data);
     }

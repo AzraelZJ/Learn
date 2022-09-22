@@ -61,7 +61,7 @@ public class MemberReceiveAddressController {
     @RequiresPermissions("member:memberreceiveaddress:info")
     public Result<MemberReceiveAddressDTO> get(@PathVariable("id") Long id) {
 
-            MemberReceiveAddressDTO data = memberReceiveAddressService.getAttr(id);
+            MemberReceiveAddressDTO data = memberReceiveAddressService.get(id);
 
         return new Result<MemberReceiveAddressDTO>().ok(data);
     }

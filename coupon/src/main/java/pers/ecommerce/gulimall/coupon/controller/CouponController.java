@@ -89,7 +89,7 @@ public class CouponController {
     @RequiresPermissions("coupon:coupon:info")
     public Result<CouponDTO> get(@PathVariable("id") Long id) {
 
-        CouponDTO data = couponService.getAttr(id);
+        CouponDTO data = couponService.get(id);
 
         return new Result<CouponDTO>().ok(data);
     }

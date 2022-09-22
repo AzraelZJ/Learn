@@ -61,7 +61,7 @@ public class WareOrderTaskDetailController {
     @RequiresPermissions("ware:wareordertaskdetail:info")
     public Result<WareOrderTaskDetailDTO> get(@PathVariable("id") Long id) {
 
-            WareOrderTaskDetailDTO data = wareOrderTaskDetailService.getAttr(id);
+            WareOrderTaskDetailDTO data = wareOrderTaskDetailService.get(id);
 
         return new Result<WareOrderTaskDetailDTO>().ok(data);
     }

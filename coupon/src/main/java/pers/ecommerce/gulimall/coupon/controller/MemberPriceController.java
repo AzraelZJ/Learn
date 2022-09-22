@@ -61,7 +61,7 @@ public class MemberPriceController {
     @RequiresPermissions("coupon:memberprice:info")
     public Result<MemberPriceDTO> get(@PathVariable("id") Long id) {
 
-            MemberPriceDTO data = memberPriceService.getAttr(id);
+            MemberPriceDTO data = memberPriceService.get(id);
 
         return new Result<MemberPriceDTO>().ok(data);
     }

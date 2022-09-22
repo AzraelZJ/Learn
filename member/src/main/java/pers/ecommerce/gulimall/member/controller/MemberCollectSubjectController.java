@@ -61,7 +61,7 @@ public class MemberCollectSubjectController {
     @RequiresPermissions("member:membercollectsubject:info")
     public Result<MemberCollectSubjectDTO> get(@PathVariable("id") Long id) {
 
-            MemberCollectSubjectDTO data = memberCollectSubjectService.getAttr(id);
+            MemberCollectSubjectDTO data = memberCollectSubjectService.get(id);
 
         return new Result<MemberCollectSubjectDTO>().ok(data);
     }

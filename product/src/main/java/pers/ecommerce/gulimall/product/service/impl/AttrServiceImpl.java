@@ -125,8 +125,8 @@ public class AttrServiceImpl extends CrudServiceImpl<AttrDao, AttrEntity, AttrDT
     /**
      * 分页模糊查询
      *
-     * @param params 请求参数
-     * @param catId  商品三级分类id
+     * @param params   请求参数
+     * @param catId    商品三级分类id
      * @return 分页数据
      */
     @Override
@@ -134,7 +134,7 @@ public class AttrServiceImpl extends CrudServiceImpl<AttrDao, AttrEntity, AttrDT
 
         String keyword = (String) params.get("keyword");
         // select * from pms_attr_group where catId=? and (attr_group_id=? or attr_group_name like %%)
-        QueryWrapper<AttrEntity> wrapper = new QueryWrapper<>();
+        QueryWrapper<AttrEntity> wrapper = new QueryWrapper<AttrEntity>();
         if (!StringUtils.isEmpty(keyword)) {
             wrapper.and((obj) -> obj.eq("attr_id", keyword).or().like("attr_name", keyword));
         }
@@ -143,11 +143,9 @@ public class AttrServiceImpl extends CrudServiceImpl<AttrDao, AttrEntity, AttrDT
         if (catId == 0) {
             page = baseDao.selectPage(
                     getPage(params, null, false), wrapper);
-
         } else {
             page = baseDao.selectPage(
                     getPage(params, null, false), wrapper.eq("cat_id", catId));
-
         }
 
         return getFinalPageData(page);

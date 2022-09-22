@@ -61,7 +61,7 @@ public class PaymentInfoController {
     @RequiresPermissions("order:paymentinfo:info")
     public Result<PaymentInfoDTO> get(@PathVariable("id") Long id) {
 
-            PaymentInfoDTO data = paymentInfoService.getAttr(id);
+            PaymentInfoDTO data = paymentInfoService.get(id);
 
         return new Result<PaymentInfoDTO>().ok(data);
     }

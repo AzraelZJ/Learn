@@ -61,7 +61,7 @@ public class SeckillSessionController {
     @RequiresPermissions("coupon:seckillsession:info")
     public Result<SeckillSessionDTO> get(@PathVariable("id") Long id) {
 
-            SeckillSessionDTO data = seckillSessionService.getAttr(id);
+            SeckillSessionDTO data = seckillSessionService.get(id);
 
         return new Result<SeckillSessionDTO>().ok(data);
     }

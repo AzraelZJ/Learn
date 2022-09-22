@@ -61,7 +61,7 @@ public class HomeSubjectSpuController {
     @RequiresPermissions("coupon:homesubjectspu:info")
     public Result<HomeSubjectSpuDTO> get(@PathVariable("id") Long id) {
 
-            HomeSubjectSpuDTO data = homeSubjectSpuService.getAttr(id);
+            HomeSubjectSpuDTO data = homeSubjectSpuService.get(id);
 
         return new Result<HomeSubjectSpuDTO>().ok(data);
     }

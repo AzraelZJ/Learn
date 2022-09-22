@@ -61,7 +61,7 @@ public class OrderOperateHistoryController {
     @RequiresPermissions("order:orderoperatehistory:info")
     public Result<OrderOperateHistoryDTO> get(@PathVariable("id") Long id) {
 
-            OrderOperateHistoryDTO data = orderOperateHistoryService.getAttr(id);
+            OrderOperateHistoryDTO data = orderOperateHistoryService.get(id);
 
         return new Result<OrderOperateHistoryDTO>().ok(data);
     }

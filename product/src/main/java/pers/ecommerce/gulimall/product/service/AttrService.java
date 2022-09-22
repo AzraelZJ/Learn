@@ -24,8 +24,10 @@ public interface AttrService extends CrudService<AttrEntity, AttrDTO> {
 
     /**
      * 分页模糊查询
-     * @param params 请求参数
-     * @param catId 商品三级分类id
+     *
+     * @param params   请求参数
+     * @param catId    商品三级分类id
+     * @param attrType 属性类型
      * @return 查询结果
      */
     PageData<AttrDTO> fuzzyQuery(Map<String, Object> params, Long catId);
